@@ -1,0 +1,7 @@
+graph\_drawer module
+====================
+
+.. automodule:: graph_drawer
+   :members:
+   :undoc-members:
+   :show-inheritance:

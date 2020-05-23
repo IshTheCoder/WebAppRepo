@@ -1,0 +1,7 @@
+stacked\_line\_slider module
+============================
+
+.. automodule:: stacked_line_slider
+   :members:
+   :undoc-members:
+   :show-inheritance:

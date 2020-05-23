@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>json_to_DF module &#8212; NBA Player Data Analysis 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-json_to_DF">
+<span id="json-to-df-module"></span><h1>json_to_DF module<a class="headerlink" href="#module-json_to_DF" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="json_to_DF.json_to_DF">
+<code class="sig-prename descclassname">json_to_DF.</code><code class="sig-name descname">json_to_DF</code><span class="sig-paren">(</span><em class="sig-param">fname</em>, <em class="sig-param">FILTER_OUT=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#json_to_DF.json_to_DF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes NBA json file and returns dataframes of it for better computation
+NOTE: need to include .json extension in the string; opens from current directory
+NOTE:   FILTER_OUT expects a list of strings that filters out column data by specified header</p>
+<blockquote>
+<div><p>Header names to use can be found via: some_json_dict[‘resultSets’][0][‘headers’]
+headers = [‘SEASON_ID’, ‘PLAYER_ID’, ‘PLAYER_NAME’, ‘TEAM_ID’,
+‘TEAM_ABBREVIATION’, ‘TEAM_NAME’, ‘PLAY_TYPE’, ‘TYPE_GROUPING’,
+‘PERCENTILE’, ‘GP’, ‘POSS_PCT’, ‘PPP’, ‘FG_PCT’, ‘FT_POSS_PCT’,
+‘TOV_POSS_PCT’, ‘SF_POSS_PCT’, ‘PLUSONE_POSS_PCT’, ‘SCORE_POSS_PCT’,
+‘EFG_PCT’, ‘POSS’, ‘PTS’, ‘FGM’, ‘FGA’, ‘FGMX’]</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>fname, str</p>
+</dd>
+<dt class="field-even">Param</dt>
+<dd class="field-even"><p>FILTER_OUT, list</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">NBA Player Data Analysis</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Group 2.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/rst/json_to_DF.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

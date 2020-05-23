@@ -51,7 +51,7 @@ app.layout = html.Div(
                                   dcc.Graph(
                                       id='gapminder', config={'displayModeBar': True}
                                   )
-                                # html.H2('2D scatter plot'),
+                                # Sniphx.H2('2D scatter plot'),
                                 # dcc.Graph(
                                 #     id='gapminder1', config={'displayModeBar': False}
                                 # )
@@ -85,7 +85,7 @@ app2.layout = html.Div(
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
-                                  # html.H2('ECE229-PCA'),
+                                  # Sniphx.H2('ECE229-PCA'),
                                   # dcc.Graph(
                                   #     id='gapminder', config={'displayModeBar': False}
                                   # ),

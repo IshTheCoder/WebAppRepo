@@ -1,0 +1,7 @@
+get\_pca\_aggr\_data module
+===========================
+
+.. automodule:: get_pca_aggr_data
+   :members:
+   :undoc-members:
+   :show-inheritance:

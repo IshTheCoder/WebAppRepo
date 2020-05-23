@@ -1,0 +1,7 @@
+working\_bar\_plot module
+=========================
+
+.. automodule:: working_bar_plot
+   :members:
+   :undoc-members:
+   :show-inheritance:

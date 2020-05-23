@@ -1,0 +1,7 @@
+scatter\_input module
+=====================
+
+.. automodule:: scatter_input
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+stacked\_bar module
+===================
+
+.. automodule:: stacked_bar
+   :members:
+   :undoc-members:
+   :show-inheritance:

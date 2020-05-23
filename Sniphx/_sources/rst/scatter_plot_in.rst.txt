@@ -1,0 +1,7 @@
+scatter\_plot\_in module
+========================
+
+.. automodule:: scatter_plot_in
+   :members:
+   :undoc-members:
+   :show-inheritance:

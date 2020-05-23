@@ -1,0 +1,7 @@
+pie\_chart module
+=================
+
+.. automodule:: pie_chart
+   :members:
+   :undoc-members:
+   :show-inheritance:

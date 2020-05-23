@@ -1,0 +1,7 @@
+figure\_most\_efficient\_playtype module
+========================================
+
+.. automodule:: figure_most_efficient_playtype
+   :members:
+   :undoc-members:
+   :show-inheritance:

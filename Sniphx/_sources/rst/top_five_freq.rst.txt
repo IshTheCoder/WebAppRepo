@@ -1,0 +1,7 @@
+top\_five\_freq module
+======================
+
+.. automodule:: top_five_freq
+   :members:
+   :undoc-members:
+   :show-inheritance:
