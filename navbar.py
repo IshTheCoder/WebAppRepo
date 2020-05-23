@@ -3,9 +3,11 @@ import dash_html_components as html
 def Navbar():
      navbar = dbc.NavbarSimple(
            children=[
-              dbc.Button(html.A('Page1', href='/page1')),
-              dbc.Button(html.A('Page2', href='/page2')),
-              dbc.Button(html.A("Page3", href="/")),
+              dbc.Button(html.A('Page1', href='/page1'),color='black'),
+              dbc.Button(html.A('Page2', href='/page2'),color='black'),
+              dbc.Button(html.A("Page3", href="/"),color='black'),
+              dbc.Button(html.A("Page4", href="/"), color='black'),
+              dbc.Button(html.A("Page5", href="/"), color='black'),
               dbc.DropdownMenu(
                  nav=True,
                  in_navbar=True,
@@ -18,6 +20,7 @@ def Navbar():
                           ],
                       ),
                     ],
+            # dbc.NavbarBrand
           brand="Home",
           brand_href="/page1",
           sticky="top",
