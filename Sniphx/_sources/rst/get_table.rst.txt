@@ -1,7 +1,0 @@
-get\_table module
-=================
-
-.. automodule:: get_table
-   :members:
-   :undoc-members:
-   :show-inheritance:

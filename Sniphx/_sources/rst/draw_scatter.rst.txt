@@ -1,7 +1,0 @@
-draw\_scatter module
-====================
-
-.. automodule:: draw_scatter
-   :members:
-   :undoc-members:
-   :show-inheritance:

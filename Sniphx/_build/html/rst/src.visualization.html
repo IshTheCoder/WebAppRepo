@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>src.visualization package &#8212; NBA Player Data Analysis 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="src-visualization-package">
+<h1>src.visualization package<a class="headerlink" href="#src-visualization-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.visualization.bar_plot_in">
+<span id="src-visualization-bar-plot-in-module"></span><h2>src.visualization.bar_plot_in module<a class="headerlink" href="#module-src.visualization.bar_plot_in" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.visualization.bar_plot_in.bar_plot_in">
+<code class="sig-prename descclassname">src.visualization.bar_plot_in.</code><code class="sig-name descname">bar_plot_in</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.visualization.bar_plot_in.bar_plot_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that gives appropriate input for the bar plot
+bar plot expects possession by ppp data per playtype</p>
+</dd></dl>
+
+</div>
+<div class="section" id="src-visualization-draw-scatter-module">
+<h2>src.visualization.draw_scatter module<a class="headerlink" href="#src-visualization-draw-scatter-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.visualization.figure_most_efficient_playtype">
+<span id="src-visualization-figure-most-efficient-playtype-module"></span><h2>src.visualization.figure_most_efficient_playtype module<a class="headerlink" href="#module-src.visualization.figure_most_efficient_playtype" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.visualization.figure_most_efficient_playtype.get_plot_data">
+<code class="sig-prename descclassname">src.visualization.figure_most_efficient_playtype.</code><code class="sig-name descname">get_plot_data</code><span class="sig-paren">(</span><em class="sig-param">aggr_data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#src.visualization.figure_most_efficient_playtype.get_plot_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>param: aggr_data, str, where the yearly aggregated data is
+param: outdir, str, folder to store output figures
+return: plot_data, dictionary = {year: data list of the year}</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.visualization.figure_most_efficient_playtype.plot_most_effi_figure">
+<code class="sig-prename descclassname">src.visualization.figure_most_efficient_playtype.</code><code class="sig-name descname">plot_most_effi_figure</code><span class="sig-paren">(</span><em class="sig-param">aggr_data</em>, <em class="sig-param">outdir=None</em><span class="sig-paren">)</span><a class="headerlink" href="#src.visualization.figure_most_efficient_playtype.plot_most_effi_figure" title="Permalink to this definition">¶</a></dt>
+<dd><p>param: aggr_data, str, where the yearly aggregated data is
+param: outdir, str, folder to store output figures
+return: save figures in the outdir</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.visualization.graph_drawer">
+<span id="src-visualization-graph-drawer-module"></span><h2>src.visualization.graph_drawer module<a class="headerlink" href="#module-src.visualization.graph_drawer" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.visualization.graph_drawer.plot_scatter">
+<code class="sig-prename descclassname">src.visualization.graph_drawer.</code><code class="sig-name descname">plot_scatter</code><span class="sig-paren">(</span><em class="sig-param">x_data</em>, <em class="sig-param">y_data</em>, <em class="sig-param">size_marker</em>, <em class="sig-param">color_marker</em><span class="sig-paren">)</span><a class="headerlink" href="#src.visualization.graph_drawer.plot_scatter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="src-visualization-grapher-module">
+<h2>src.visualization.grapher module<a class="headerlink" href="#src-visualization-grapher-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.visualization.line_plot_in">
+<span id="src-visualization-line-plot-in-module"></span><h2>src.visualization.line_plot_in module<a class="headerlink" href="#module-src.visualization.line_plot_in" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.visualization.line_plot_in.line_plot_in">
+<code class="sig-prename descclassname">src.visualization.line_plot_in.</code><code class="sig-name descname">line_plot_in</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.visualization.line_plot_in.line_plot_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input for line plot.
+returns a list of 11 lists, where each inner list corresponds to a playtype, and contains 5 values
+corresponding to the average frequency for years 2015-2019.
+also returns a corresponding list of playtype strings for labeling</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list(PLAYTYPE_STRINGS), list(list(floats))</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="src-visualization-pie-chart-module">
+<h2>src.visualization.pie_chart module<a class="headerlink" href="#src-visualization-pie-chart-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.visualization.stacked_bar">
+<span id="src-visualization-stacked-bar-module"></span><h2>src.visualization.stacked_bar module<a class="headerlink" href="#module-src.visualization.stacked_bar" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.visualization.stacked_bar.create_slider_scatter">
+<code class="sig-prename descclassname">src.visualization.stacked_bar.</code><code class="sig-name descname">create_slider_scatter</code><span class="sig-paren">(</span><em class="sig-param">fname_list</em>, <em class="sig-param">title_graph</em>, <em class="sig-param">yaxis_label</em>, <em class="sig-param">x_axis_label</em><span class="sig-paren">)</span><a class="headerlink" href="#src.visualization.stacked_bar.create_slider_scatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required format of get_y output, names is the list of all 11 playtypes
+y_1 is a list of listse i.e. a list of 11 5 element lists, each inner list
+is the line of frequency change over the years. If you can ideally please try to normalize the
+data for each year, for total freq of playtypes per year to sum to 100
+names is a list of the names of playtypes.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.visualization.stacked_line_slider">
+<span id="src-visualization-stacked-line-slider-module"></span><h2>src.visualization.stacked_line_slider module<a class="headerlink" href="#module-src.visualization.stacked_line_slider" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.visualization.stacked_line_slider.create_slider_scatter">
+<code class="sig-prename descclassname">src.visualization.stacked_line_slider.</code><code class="sig-name descname">create_slider_scatter</code><span class="sig-paren">(</span><em class="sig-param">fname_list</em>, <em class="sig-param">title_graph</em>, <em class="sig-param">yaxis_label</em>, <em class="sig-param">x_axis_label</em><span class="sig-paren">)</span><a class="headerlink" href="#src.visualization.stacked_line_slider.create_slider_scatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required format of get_y output, names is the list of all 11 playtypes
+y_1 is a list of listse i.e. a list of 11 5 element lists, each inner list
+is the line of frequency change over the years. If you can ideally please try to normalize the
+data for each year, for total freq of playtypes per year to sum to 100
+names is a list of the names of playtypes.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.visualization.working_bar_plot">
+<span id="src-visualization-working-bar-plot-module"></span><h2>src.visualization.working_bar_plot module<a class="headerlink" href="#module-src.visualization.working_bar_plot" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.visualization.working_bar_plot.bar_p">
+<code class="sig-prename descclassname">src.visualization.working_bar_plot.</code><code class="sig-name descname">bar_p</code><span class="sig-paren">(</span><em class="sig-param">title_graph='Points per Possession (PPP) Average per Playstyle'</em>, <em class="sig-param">x_axis_label='Playstyle'</em>, <em class="sig-param">yaxis_label='PPP'</em><span class="sig-paren">)</span><a class="headerlink" href="#src.visualization.working_bar_plot.bar_p" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that graphs the bar plot
+use bar_plot_in function.
+can specify labels of graph.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.visualization">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.visualization" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">NBA Player Data Analysis</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Group 2.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/rst/src.visualization.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

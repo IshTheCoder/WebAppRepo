@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>src.analysis package &#8212; NBA Player Data Analysis 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="src-analysis-package">
+<h1>src.analysis package<a class="headerlink" href="#src-analysis-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="src-analysis-get-pca-aggr-data-module">
+<h2>src.analysis.get_pca_aggr_data module<a class="headerlink" href="#src-analysis-get-pca-aggr-data-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.analysis.get_table">
+<span id="src-analysis-get-table-module"></span><h2>src.analysis.get_table module<a class="headerlink" href="#module-src.analysis.get_table" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.analysis.get_table.get_all_files">
+<code class="sig-prename descclassname">src.analysis.get_table.</code><code class="sig-name descname">get_all_files</code><span class="sig-paren">(</span><em class="sig-param">SeasonYear='2018'</em>, <em class="sig-param">PlayerOrTeam='P'</em><span class="sig-paren">)</span><a class="headerlink" href="#src.analysis.get_table.get_all_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all files for diff playtypes depending on year. You can specify player or team data.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.analysis.get_table.get_pca_table">
+<code class="sig-prename descclassname">src.analysis.get_table.</code><code class="sig-name descname">get_pca_table</code><span class="sig-paren">(</span><em class="sig-param">InputDir</em>, <em class="sig-param">SeasonYear='2018'</em>, <em class="sig-param">PlayerOrTeam='P'</em><span class="sig-paren">)</span><a class="headerlink" href="#src.analysis.get_table.get_pca_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get table for pca</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.analysis.json_to_DF">
+<span id="src-analysis-json-to-df-module"></span><h2>src.analysis.json_to_DF module<a class="headerlink" href="#module-src.analysis.json_to_DF" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.analysis.json_to_DF.json_to_DF">
+<code class="sig-prename descclassname">src.analysis.json_to_DF.</code><code class="sig-name descname">json_to_DF</code><span class="sig-paren">(</span><em class="sig-param">fname</em>, <em class="sig-param">FILTER_OUT=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#src.analysis.json_to_DF.json_to_DF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes NBA json file and returns dataframes of it for better computation
+NOTE: need to include .json extension in the string; opens from current directory
+NOTE:   FILTER_OUT expects a list of strings that filters out column data by specified header</p>
+<blockquote>
+<div><p>Header names to use can be found via: some_json_dict[‘resultSets’][0][‘headers’]
+headers = [‘SEASON_ID’, ‘PLAYER_ID’, ‘PLAYER_NAME’, ‘TEAM_ID’,
+‘TEAM_ABBREVIATION’, ‘TEAM_NAME’, ‘PLAY_TYPE’, ‘TYPE_GROUPING’,
+‘PERCENTILE’, ‘GP’, ‘POSS_PCT’, ‘PPP’, ‘FG_PCT’, ‘FT_POSS_PCT’,
+‘TOV_POSS_PCT’, ‘SF_POSS_PCT’, ‘PLUSONE_POSS_PCT’, ‘SCORE_POSS_PCT’,
+‘EFG_PCT’, ‘POSS’, ‘PTS’, ‘FGM’, ‘FGA’, ‘FGMX’]</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>fname, str</p>
+</dd>
+<dt class="field-even">Param</dt>
+<dd class="field-even"><p>FILTER_OUT, list</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.analysis.kmeans">
+<span id="src-analysis-kmeans-module"></span><h2>src.analysis.kmeans module<a class="headerlink" href="#module-src.analysis.kmeans" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.analysis.kmeans.k_means">
+<code class="sig-prename descclassname">src.analysis.kmeans.</code><code class="sig-name descname">k_means</code><span class="sig-paren">(</span><em class="sig-param">fname</em>, <em class="sig-param">dim=3</em>, <em class="sig-param">cluster=8</em><span class="sig-paren">)</span><a class="headerlink" href="#src.analysis.kmeans.k_means" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>return recontruction of clusters,</dt><dd><p>shape = [#cluster, original_dimention]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.analysis.kmeans.pca_processing">
+<code class="sig-prename descclassname">src.analysis.kmeans.</code><code class="sig-name descname">pca_processing</code><span class="sig-paren">(</span><em class="sig-param">fname</em>, <em class="sig-param">n_comp=3</em><span class="sig-paren">)</span><a class="headerlink" href="#src.analysis.kmeans.pca_processing" title="Permalink to this definition">¶</a></dt>
+<dd><p>process file and get data to put into PCA for clustering
+specify fname string
+specify n_comp for amount of principle components
+returns pca object, name of players, data of the pca corresponding to names
+:input: fname, str</p>
+<blockquote>
+<div><p>n_comp, int</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>pca, data_pca, player_name</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="src-analysis-kmeans-top5-module">
+<h2>src.analysis.kmeans_top5 module<a class="headerlink" href="#src-analysis-kmeans-top5-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.analysis.scatter_input">
+<span id="src-analysis-scatter-input-module"></span><h2>src.analysis.scatter_input module<a class="headerlink" href="#module-src.analysis.scatter_input" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.analysis.scatter_input.scatter_plot_in">
+<code class="sig-prename descclassname">src.analysis.scatter_input.</code><code class="sig-name descname">scatter_plot_in</code><span class="sig-paren">(</span><em class="sig-param">fname</em><span class="sig-paren">)</span><a class="headerlink" href="#src.analysis.scatter_input.scatter_plot_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that outputs total poss, ppp, and name of each player through 3 lists
+fname is expected directory path
+fname must use data in ./poss_ppp_dir OR SHIT WONT WORK :(</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.analysis.scatter_plot_in">
+<span id="src-analysis-scatter-plot-in-module"></span><h2>src.analysis.scatter_plot_in module<a class="headerlink" href="#module-src.analysis.scatter_plot_in" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.analysis.scatter_plot_in.scatter_plot_in">
+<code class="sig-prename descclassname">src.analysis.scatter_plot_in.</code><code class="sig-name descname">scatter_plot_in</code><span class="sig-paren">(</span><em class="sig-param">fname</em><span class="sig-paren">)</span><a class="headerlink" href="#src.analysis.scatter_plot_in.scatter_plot_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>outdated function for input to scatter plot; use scatter_input.py</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.analysis.top_five_freq">
+<span id="src-analysis-top-five-freq-module"></span><h2>src.analysis.top_five_freq module<a class="headerlink" href="#module-src.analysis.top_five_freq" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.analysis.top_five_freq.top_five_freq">
+<code class="sig-prename descclassname">src.analysis.top_five_freq.</code><code class="sig-name descname">top_five_freq</code><span class="sig-paren">(</span><em class="sig-param">top_five_pk</em>, <em class="sig-param">pca_table</em><span class="sig-paren">)</span><a class="headerlink" href="#src.analysis.top_five_freq.top_five_freq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes list of list of top five players per cluster, and outputs a list of dataframes
+corresponding to those players’ playtype frequency stats.</p>
+<p>pca_table input must be in the format returned by get_table.py</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>top_five_pk, list(list(strings))</p>
+</dd>
+<dt class="field-even">Param</dt>
+<dd class="field-even"><p>pca_table, pd.DataFrame</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list(pd.DataFrame)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.analysis">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.analysis" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">NBA Player Data Analysis</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Group 2.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/rst/src.analysis.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
