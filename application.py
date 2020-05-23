@@ -6,7 +6,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from pca import k_means
 from scatter import  scatter_plot_in
-from WebAppRepo.navbar import Navbar
+from navbar import Navbar
 import dash_bootstrap_components as dbc
 import flask
 
