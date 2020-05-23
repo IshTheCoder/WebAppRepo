@@ -49,7 +49,7 @@ app.layout = html.Div(
                               children=[
                                   html.H2('ECE229-PCA'),
                                   dcc.Graph(
-                                      id='gapminder', config={'displayModeBar': False}
+                                      id='gapminder', config={'displayModeBar': True}
                                   )
                                 # html.H2('2D scatter plot'),
                                 # dcc.Graph(
@@ -96,7 +96,7 @@ app2.layout = html.Div(
                                   # ),
                                 html.H2('2D scatter plot'),
                                 dcc.Graph(
-                                    id='gapminder1', config={'displayModeBar': False}
+                                    id='gapminder1', config={'displayModeBar': True}
                                 )
                               ])  # Define the right element
                  ])
