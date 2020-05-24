@@ -1,84 +1,111 @@
-from dash.dependencies import Input, Output
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
-import matplotlib.pyplot as plt
 import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
 import numpy as np
-import plotly.graph_objects as go
-from pca import k_means, top5_img
-from scatter import  scatter_plot_in
-from navbar import Navbar
-import dash_bootstrap_components as dbc
-import flask
-from io import BytesIO
-import base64
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn.decomposition import PCA
+import matplotlib;
 
-def func(pct, allvals):
-    absolute = int(pct/100.*np.sum(allvals))
-    return "{:.1f}%".format(pct, absolute)
+# matplotlib.use("TkAgg")
+from sklearn import cluster
+# import plotly
+import plotly.graph_objs as go
+import chart_studio
+from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
+import chart_studio.plotly as py
 
-def fig_to_uri(in_fig, close_all=True, **save_args):
-    # type: (plt.Figure) -> str
-    """
-    Save a figure as a URI
-    :param in_fig:
-    :return:
-    """
-    out_img = BytesIO()
-    in_fig.savefig(out_img, format='png', **save_args)
-    if close_all:
-        in_fig.clf()
-        plt.close('all')
-    out_img.seek(0)  # rewind file
-    encoded = base64.b64encode(out_img.read()).decode("ascii").replace("\n", "")
-    return "data:image/png;base64,{}".format(encoded)
 
-def draw_pie_chart(name, year):
+def scatter_plot_in(fname):
     '''
-    Function to draw the pie chart of players of different PlayType.
-    Just input the player name and the year you want to know.
-    :param name: Player name, string
-    :param year: year
-    :return:
+    Function that outputs total poss, ppp, and name of each player through 3 lists
+    fname is expected directory path
+    fname must use data in ./poss_ppp_data
+
     '''
-    assert isinstance(name, str)
-    assert 2015 <= year <= 2019
-    path = "data/data_cleaned/pca_data/" + str(year) + "_pca_table.csv"
-    df = pd.read_csv(path)
-    new_df = df[df['PLAYER_NAME'] == name]
-    data = new_df[["iso_freq", "tr_freq", "prb_freq", "prr_freq", "pu_freq", "su_freq", "ho_freq", "cut_freq", "os_freq",
-                  "putback_freq", "misc_freq"]]
-    data = data.values.tolist()
-    data = np.array(data)[0]
-    data = data / np.sum(data)
-    fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect="equal"))
-    recipe = ["Isolation",
-              "Transition",
-              "PRBallHandler",
-              "PRRollMan",
-              "Postup",
-              "Spotup",
-              "Handoff",
-              "Cut",
-              "Offscreen",
-              "OffRebound",
-              "Misc"]
-    ingredients = [x.split()[-1] for x in recipe]
-    wedges, texts, autotexts = ax.pie(data, autopct=lambda pct: func(pct, data),
-                                      textprops=dict(color="w"), shadow=False,
-                                      colors=["cornflowerblue", "mediumseagreen", "gray", "salmon", "burlywood", "plum",
-                                              "peru", "sandybrown", "teal", "darkkhaki", "pink"])
-    ax.legend(wedges, ingredients,
-              title="Freq of PlayTypes",
-              loc="center left",
-              bbox_to_anchor=(1, 0, 0.5, 1))
-    plt.setp(autotexts, size=8, weight="bold")
+    pt_abrv = ['iso', 'tr', 'prb', 'prr', 'pu', 'su', 'ho', 'cut', 'os', 'putback', 'misc']
 
-    ax.set_title(name + "  " + str(year))
+    fname = "data/data_cleaned" + fname
 
-    our_url= fig_to_uri(fig)
-    return our_url
+    df = pd.read_csv(fname)
 
-for i in range(2015, 2019):
-    draw_pie_chart("Brook Lopez", i)
+    df_calc = pd.DataFrame()
+    for i in pt_abrv:
+        df_poss = df[i + '_poss']
+        df_ppp = df[i + '_ppp']
+
+        df_points = df_ppp * df_poss
+        df_calc[i + '_points'] = df_points
+
+    ppp = df_calc.sum(axis=1) / df['total_poss']
+    return df['total_poss'].tolist(), ppp.tolist(), df['PLAYER_NAME'].tolist()
+
+
+chart_studio.tools.set_credentials_file(username='swishan', api_key='nQfq97kmHYvg1HhlKSp5')
+
+# flist = ['/poss_ppp_data/poss2015.csv', '/poss_ppp_data/poss2016.csv', '/poss_ppp_data/poss2017.csv',
+#          '/poss_ppp_data/poss2018.csv', '/poss_ppp_data/poss2019.csv']
+
+flist=["/poss_ppp_data/poss"+str(year)+'.csv' for year in range(2015,2020)]
+
+
+def create_slider_scatter(fname_list, title_graph, yaxis_label, x_axis_label):
+    """
+    get xy should take in the list of filenames for each year and output the x values, i.e. total possessions for the year vs total PPP.
+    PPP should be weighted according to the number of possessions right, like a players season PPP, is PPP_i * Poss_i, where i is the playtype
+    """
+    fig = go.Figure()
+    colorscale_curr = [[0.0, "rgb(165,0,38)"], [0.1111111111111111, "rgb(215,48,39)"],
+                       [0.2222222222222222, "rgb(244,109,67)"], [0.3333333333333333, "rgb(253,174,97)"],
+                       [0.4444444444444444, "rgb(254,224,144)"], [0.5555555555555556, "rgb(224,243,248)"],
+                       [0.6666666666666666, "rgb(171,217,233)"], [0.7777777777777778, "rgb(116,173,209)"],
+                       [0.8888888888888888, "rgb(69,117,180)"], [1.0, "rgb(49,54,149)"]]
+    colorscale_curr.reverse()
+
+    # just going to use global variable list of path strings;
+    for i in range(len(flist)):
+        x_1, y_1, names = scatter_plot_in(flist[i])
+
+        fig.add_trace(
+            go.Scatter(x=x_1, y=y_1, text=names, hoverinfo='text', mode='markers',
+                       marker=dict(color=y_1, colorscale=colorscale_curr, size=12,
+                                   line=dict(width=2, color='DarkSlateGrey')), visible=False,
+                       name="Points Per Possession vs Possessions " + str(i)
+                       ))
+    fig.data[0].visible = True
+
+    steps = []
+    for i in range(len(fig.data)):
+        step = dict(
+            method="restyle",
+            args=["visible", [False] * len(fig.data)],
+            label='Year ' + str(i + 2015)
+
+        )
+        step["args"][1][i] = True  # Toggle i'th trace to "visible"
+        steps.append(step)
+
+    # plotly.offline.plot(data, filename='Clusters_9.html')
+
+    sliders = [dict(
+        active=5,
+        currentvalue={"prefix": "Year: "},
+        pad={"t": 5},
+        steps=steps
+    )]
+    start_index = 2015
+    fig.update_layout(
+        sliders=sliders,
+        # title = "9 Cluster classification of players based on Scoring Styles"
+        title={"text": title_graph},
+        xaxis_title=x_axis_label,
+        yaxis_title=yaxis_label,
+    )
+
+    fig.show()
+    # py.iplot(fig, sharing='public', filename=title_graph)
+    # plotly.offline.plot(fig, filename=title_graph+".html")
+
+    return "Completed"
+
+
+print(create_slider_scatter(['2015', '2016', '2019', '2020'], 'Points Per Possession vs Possessions', 'PPP','Possessions'))

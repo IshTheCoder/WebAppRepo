@@ -3,16 +3,17 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from collections import defaultdict
-
+from plotly.tools import mpl_to_plotly
+from pie_chart import fig_to_uri
 
 playtypes = ['cut', 'ho', 'iso', 'misc',
              'os', 'prb', 'prr', 'pu',
              'putback', 'su', 'tr']
 
-playtype_shortcut = {'iso':'Isolation', 'tr':'Transition', 'prb':'PRBallHandler', 
-                     'prr':'PRRollMan','pu':'Postup','su': 'Spotup', 
-                     'ho':'Handoff','cut':'Cut', 'os':'Offscreen', 
-                     'putback':'OffRebound', 'misc':'Misc'}
+playtype_shortcut = {'iso': 'Isolation', 'tr': 'Transition', 'prb': 'PRBallHandler',
+                     'prr': 'PRRollMan', 'pu': 'Postup', 'su': 'Spotup',
+                     'ho': 'Handoff', 'cut': 'Cut', 'os': 'Offscreen',
+                     'putback': 'OffRebound', 'misc': 'Misc'}
 
 
 def get_plot_data(aggr_data=None):
@@ -34,7 +35,6 @@ def get_plot_data(aggr_data=None):
             [c for c in f if '0' <= c <= '9']
         )
         year = int(year)
-
 
         for col in playtypes:
             df[col + "_pts"] = df[col + "_ppp"] * df[col + "_poss"]
@@ -60,12 +60,13 @@ def plot_most_effi_figure(aggr_data, outdir=None):
     bar_width, start = 0.15, x
     colors = ["#823935", "#89BEB2", "#C9BA83", "#DED38C", "#DE9C53"]
 
+    fig=plt.figure(figsize=(10, 5))
     for year in range(2015, 2020):
         plt.bar(
-            start, 
-            plot_data[year], 
-            bar_width, 
-            color=colors[year-2015], 
+            start,
+            plot_data[year],
+            bar_width,
+            color=colors[year - 2015],
             label=str(year)
         )
         start += bar_width
@@ -75,4 +76,10 @@ def plot_most_effi_figure(aggr_data, outdir=None):
         x - 5.5 * bar_width / 2, [playtype_shortcut[x] for x in playtypes]
     )
     plt.ylabel("Efficiency / PPP")
-    plt.show() 
+    # plotly_fig = mpl_to_plotly(fig)
+    uri = fig_to_uri(fig)
+    return uri
+
+
+
+# plot_most_effi_figure("data/data_cleaned/poss_ppp_data")

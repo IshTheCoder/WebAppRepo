@@ -13,6 +13,7 @@ from pie_chart import draw_pie_chart
 import dash_bootstrap_components as dbc
 import flask
 import matplotlib
+from effi import plot_most_effi_figure
 
 def get_options(list_stocks):
     dict_list = []
@@ -162,10 +163,11 @@ app4.layout = html.Div(
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
-                                  html.H2('3D-cluster'),
-                                  dcc.Graph(
-                                      id='gapminder3', config={'displayModeBar': True}
-                                  )
+                                  html.H2('Efficiency'),
+                                  # dcc.Graph(
+                                  #     id='gapminder3', config={'displayModeBar': True}
+                                  # )
+                                  html.Div([html.Img(id='gapminder3',src='')])
                               ])  # Define the right element
                  ])
 ])
@@ -356,37 +358,14 @@ def update_app(selected_dropdown_value):
     fig.update_layout(autosize=True, width=900, height=600, barmode='stack')
     return fig
 
-@app4.callback(Output('gapminder3', 'figure'),[Input('years', 'value')])
+@app4.callback(Output('gapminder3', 'src'),[Input('years', 'value')])
 def update_app(selected_dropdown_value):
-    cluster_num = {'2015': 5, '2016':6, '2017':7, '2018':8, '2019':8}
-    names, X, labels = k_means("data/data_cleaned/pca_data/"+selected_dropdown_value+'_pca_table.csv', dim=3, cluster_num=cluster_num[selected_dropdown_value])
-    figure = {
-        'data': [
-            go.Scatter3d(x=X[:, 1],
-                         y=X[:, 0],
-                         z=X[:, 2],
-                         text=names,
-                         hoverinfo='text',
-                         mode='markers',
-                         marker=dict(color=labels)
-                         )
-        ],
-        'layout':
-            dict(
-                title='Scoring Clusters Per Year',
-                xaxis={'title': 'x'},
-                yaxis={'title': 'y'},
-                zaxis={'title': 'z'},
-                hovermode='closest',
-                template = 'plotly_dark',
-            )
-    }
-    return figure
+    return plot_most_effi_figure("data/data_cleaned/poss_ppp_data")
 
 @app5.callback(Output('gapminder4', 'figure'),[Input('years', 'value')])
 def update_app(selected_dropdown_value):
     cluster_num = {'2015': 5, '2016':6, '2017':7, '2018':8, '2019':8}
-    names, X, labels = k_means("data/data_cleaned/pca_data/"+selected_dropdown_value+'_pca_table.csv', dim=3, cluster_num=cluster_num[selected_dropdown_value])
+    names, X, labels, _ = k_means("data/data_cleaned/pca_data/"+selected_dropdown_value+'_pca_table.csv', dim=3, cluster_num=cluster_num[selected_dropdown_value])
     figure = {
         'data': [
             go.Scatter3d(x=X[:, 1],
