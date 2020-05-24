@@ -7,10 +7,12 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 from pca import k_means, top5_img
-from scatter import  scatter_plot_in
+from scatter import scatter_plot_in
 from navbar import Navbar
+from pie_chart import draw_pie_chart
 import dash_bootstrap_components as dbc
 import flask
+import matplotlib
 
 def get_options(list_stocks):
     dict_list = []
@@ -18,6 +20,11 @@ def get_options(list_stocks):
         dict_list.append({'label': i, 'value': i})
 
     return dict_list
+matplotlib.use('agg')
+
+path = "data/data_cleaned/pca_data/2015_pca_table.csv"
+df = pd.read_csv(path)
+names= df['PLAYER_NAME']
 
 app_flask=flask.Flask(__name__)
 
@@ -208,6 +215,12 @@ app6.layout = html.Div(
                                                             multi=False,
                                                             value='2015',
                                                             style={'backgroundColor': '#1E1E1E'},
+                                                            className='stockselector'),
+                                                dcc.Dropdown(id='names',
+                                                            options=get_options(names),
+                                                            multi=False,
+                                                            value='Brook Lopez',
+                                                            style={'backgroundColor': '#1E1E1E'},
                                                             className='stockselector')
                                            ],
                                            style={'color': '#1E1E1E'})
@@ -216,9 +229,10 @@ app6.layout = html.Div(
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
                                   html.H2('Pie Chart'),
-                                  dcc.Graph(
-                                      id='gapminder5', config={'displayModeBar': True}
-                                  )
+                                  # dcc.Graph(
+                                  #     id='gapminder5', config={'displayModeBar': True}
+                                  # )
+                                  html.Div([html.Img(id='gapminder5',src='')])
                               ])  # Define the right element
                  ])
 ])
@@ -396,32 +410,9 @@ def update_app(selected_dropdown_value):
     }
     return figure
 
-@app6.callback(Output('gapminder5', 'figure'),[Input('years', 'value')])
-def update_app(selected_dropdown_value):
-    cluster_num = {'2015': 5, '2016':6, '2017':7, '2018':8, '2019':8}
-    names, X, labels = k_means("data/data_cleaned/pca_data/"+selected_dropdown_value+'_pca_table.csv', dim=3, cluster_num=cluster_num[selected_dropdown_value])
-    figure = {
-        'data': [
-            go.Scatter3d(x=X[:, 1],
-                         y=X[:, 0],
-                         z=X[:, 2],
-                         text=names,
-                         hoverinfo='text',
-                         mode='markers',
-                         marker=dict(color=labels)
-                         )
-        ],
-        'layout':
-            dict(
-                title='Scoring Clusters Per Year',
-                xaxis={'title': 'x'},
-                yaxis={'title': 'y'},
-                zaxis={'title': 'z'},
-                hovermode='closest',
-                template = 'plotly_dark',
-            )
-    }
-    return figure
+@app6.callback(Output('gapminder5', 'src'),[Input('years', 'value'),Input('names', 'value')])
+def update_app(year,name):
+    return draw_pie_chart(name, int(year))
 
 
 if __name__ == '__main__':
