@@ -355,7 +355,7 @@ def update_app(selected_dropdown_value):
             )
         )
         )
-    fig.update_layout(autosize=True, width=900, height=600, barmode='stack')
+    fig.update_layout(autosize=True, width=900, height=1200, barmode='stack')
     return fig
 
 @app4.callback(Output('gapminder3', 'src'),[Input('years', 'value')])
