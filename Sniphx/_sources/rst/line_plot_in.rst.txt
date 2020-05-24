@@ -1,7 +1,0 @@
-line\_plot\_in module
-=====================
-
-.. automodule:: line_plot_in
-   :members:
-   :undoc-members:
-   :show-inheritance:

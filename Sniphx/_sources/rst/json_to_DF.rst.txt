@@ -1,7 +1,0 @@
-json\_to\_DF module
-===================
-
-.. automodule:: json_to_DF
-   :members:
-   :undoc-members:
-   :show-inheritance:

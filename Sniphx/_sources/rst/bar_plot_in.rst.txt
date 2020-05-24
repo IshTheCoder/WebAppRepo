@@ -1,7 +1,0 @@
-bar\_plot\_in module
-====================
-
-.. automodule:: bar_plot_in
-   :members:
-   :undoc-members:
-   :show-inheritance:
