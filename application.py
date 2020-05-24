@@ -412,7 +412,19 @@ def update_app(selected_dropdown_value):
 
 @app6.callback(Output('gapminder5', 'src'),[Input('years', 'value'),Input('names', 'value')])
 def update_app(year,name):
+    # path = "data/data_cleaned/pca_data/" + year + "_pca_table.csv"
+    # df = pd.read_csv(path)
+    # names = df['PLAYER_NAME']
+    # if name not in names:
+    #     return
     return draw_pie_chart(name, int(year))
+
+@app6.callback(Output('names', 'options'),[Input('years', 'value')])
+def update_options(year):
+    path = "data/data_cleaned/pca_data/"+year+"_pca_table.csv"
+    df = pd.read_csv(path)
+    names = df['PLAYER_NAME']
+    return get_options(names)
 
 
 if __name__ == '__main__':
