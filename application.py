@@ -103,30 +103,72 @@ app2.layout = html.Div(
 
 @app.callback(Output('gapminder', 'figure'),[Input('years', 'value')])
 def update_gapminder(selected_dropdown_value):
+
+    
+    final_list=['2015','2016','2017','2018','2019']
     cluster_num = {'2015': 5, '2016':6, '2017':7, '2018':8, '2019':8}
-    names, X, labels = k_means("data/data_cleaned/pca_data/"+selected_dropdown_value+'_pca_table.csv', dim=3, cluster_num=cluster_num[selected_dropdown_value])
-    figure = {
-        'data': [
-            go.Scatter3d(x=X[:, 1],
-                         y=X[:, 0],
-                         z=X[:, 2],
-                         text=names,
-                         hoverinfo='text',
-                         mode='markers',
-                         marker=dict(color=labels)
-                         )
-        ],
-        'layout':
-            dict(
-                title='Scoring Clusters Per Year',
-                xaxis={'title': 'x'},
-                yaxis={'title': 'y'},
-                zaxis={'title': 'z'},
-                hovermode='closest',
-                template = 'plotly_dark',
-            )
-    }
-    return figure
+    fig = go.Figure()
+    count = 0
+
+    for each in final_list:
+
+      names, X, labels = k_means("data/data_cleaned/pca_data/"+each+'_pca_table.csv', dim=3, cluster_num=cluster_num[each])
+      print("Test")
+      count+= 1
+      fig.add_trace(go.Scatter3d(x=X[:, 1], y=X[:, 0], z=X[:, 2], text = names, hoverinfo = 'text', mode='markers', marker=dict(color=labels), visible=False, name="Player Clusters for " + each))
+      steps = []
+      for i in range(len(fig.data)):
+          step = dict(
+              method="restyle",
+              args=["visible", [False] * len(fig.data)],
+              label='Year ' + str(i + 2015)
+
+          )
+          step["args"][1][i] = True  # Toggle i'th trace to "visible"
+          steps.append(step)
+      sliders = [dict(active=5,
+        currentvalue={"prefix": "Year: "},
+        pad={"t": 5},
+        steps=steps)]
+      start_index = 2015
+      fig.update_layout(
+        sliders=sliders,
+        #title = "9 Cluster classification of players based on Scoring Styles"
+        title={"text": "Scoring Clusters Per Year"}
+        )
+
+
+      #fig.show()
+
+
+      #plotly.offline.plot(fig, filename='Cluster_final.html')
+
+
+
+
+    # figure = {
+    #     'data': [
+    #         go.Scatter3d(x=X[:, 1],
+    #                      y=X[:, 0],
+    #                      z=X[:, 2],
+    #                      text=names,
+    #                      hoverinfo='text',
+    #                      mode='markers',
+    #                      marker=dict(color=labels)
+    #                      )
+    #     ],
+    #     'layout':
+    #         dict(
+    #             title='Scoring Clusters Per Year',
+    #             xaxis={'title': 'x'},
+    #             yaxis={'title': 'y'},
+    #             zaxis={'title': 'z'},
+    #             hovermode='closest',
+    #             template = 'plotly_dark',
+    #         )
+    # }
+
+    return fig
 
 @app2.callback(Output('gapminder1', 'figure'), [Input('years', 'value')])
 def update_gapminder(selected_dropdown_value):
@@ -140,8 +182,16 @@ def update_gapminder(selected_dropdown_value):
                        [0.7777777777777778, "rgb(116,173,209)"],
                        [0.8888888888888888, "rgb(69,117,180)"],
                        [1.0, "rgb(49,54,149)"]]
+
+
+
+
+
     colorscale_curr.reverse()
+
     x_1, y_1, names = scatter_plot_in("data/data_cleaned/poss_ppp_data/poss" + selected_dropdown_value + '.csv')
+
+
     figure = {
         'data': [
             go.Scatter(x=x_1,
