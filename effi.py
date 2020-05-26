@@ -75,6 +75,7 @@ def plot_most_effi_figure(aggr_data, outdir=None):
     plt.xticks(
         x - 5.5 * bar_width / 2, [playtype_shortcut[x] for x in playtypes]
     )
+    plt.xticks(rotation=45s)
     plt.ylabel("Efficiency / PPP")
     # plotly_fig = mpl_to_plotly(fig)
     uri = fig_to_uri(fig)
