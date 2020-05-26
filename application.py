@@ -240,7 +240,7 @@ app6.layout = html.Div(
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
                                   html.H2('Pie Chart'),
-                                  html.Div(className='row', children=[html.Img(id='gapminder5', src=''),html.Img(id='playphoto',src='', alt='Not Found')]),
+                                  html.Div(children=[html.Img(id='gapminder5', src=''),html.Img(id='playphoto',src='', alt='Not Found')]),
                                   html.Div(id='app6text', children='123')
                               ])  # Define the right element
                  ])

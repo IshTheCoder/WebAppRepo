@@ -25,8 +25,8 @@ def update_app1():
     count = 0
 
     for each in final_list:
-        names, X, labels,_ = k_means('data/data_cleaned/pca_data/' + each + '_pca_table.csv', dim=3,
-                                   cluster_num=dims[count])
+        names, X, labels, _ = k_means('data/data_cleaned/pca_data/' + each + '_pca_table.csv', dim=3,
+                                      cluster_num=dims[count])
         count += 1
         fig.add_trace(
             go.Scatter3d(x=X[:, 1], y=X[:, 0], z=X[:, 2], text=names, hoverinfo='text', mode='markers',
@@ -61,9 +61,10 @@ def update_app1():
     )
     return fig
 
-def update_app2():
-    return create_slider_scatter(['2015','2016','2017','2018','2019'], 'Points Per Possession vs Possessions', 'PPP', 'Possessions')
 
+def update_app2():
+    return create_slider_scatter(['2015', '2016', '2017', '2018', '2019'], 'Points Per Possession vs Possessions',
+                                 'PPP', 'Possessions')
 
 
 def update_app3(year):
@@ -114,13 +115,15 @@ def update_app3(year):
 def update_app4():
     return plot_most_effi_figure("data/data_cleaned/poss_ppp_data")
 
+
 def update_app6(year, name):
     return draw_pie_chart(name, int(year))
 
+
 def update_photo6(name):
-    name=name.lower()
+    name = name.lower()
     name = ''.join(name.split())
-    file="assets/"+name+'.png'
+    file = "assets/" + name + '.png'
     if not os.path.exists(file):
         return ''
     else:

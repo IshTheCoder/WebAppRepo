@@ -82,5 +82,4 @@ def draw_pie_chart(name, year):
     ax.set_title(name + "  " + str(year))
 
     our_url= fig_to_uri(fig)
-    # plotly_fig=mpl_to_plotly(fig)
     return our_url
