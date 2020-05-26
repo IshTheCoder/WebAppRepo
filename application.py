@@ -73,7 +73,8 @@ app.layout = html.Div(
                                   html.H2('ECE229-PCA'),
                                   dcc.Graph(
                                       id='gapminder', config={'displayModeBar': True}, figure=update_app1()
-                                  )
+                                  ),
+                                  html.Div(id='app1text', children='Here is a text box')
                               ])  # Define the right element
                  ])
     ])
@@ -108,7 +109,8 @@ app2.layout = html.Div(
                                   html.H2('2D scatter plot'),
                                   dcc.Graph(
                                       id='gapminder1', config={'displayModeBar': True}
-                                  )
+                                  ),
+                                  html.Div(id='app2text', children='Here is a text box')
                               ])  # Define the right element
                  ])
     ])
@@ -139,7 +141,8 @@ app3.layout = html.Div(
                                   html.H2('Top5_different years'),
                                   dcc.Graph(
                                       id='gapminder2', config={'displayModeBar': True}
-                                  )
+                                  ),
+                                  html.Div(id='app3text', children='Here is a text box')
                               ])  # Define the right element
                  ])
     ])
@@ -168,10 +171,8 @@ app4.layout = html.Div(
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
                                   html.H2('Efficiency'),
-                                  # dcc.Graph(
-                                  #     id='gapminder3', config={'displayModeBar': True}
-                                  # )
-                                  html.Div([html.Img(id='gapminder3', src='')])
+                                  html.Div([html.Img(id='gapminder3', src='')]),
+                                  html.Div(id='app4text', children='Here is a text box')
                               ])  # Define the right element
                  ])
     ])
@@ -202,7 +203,8 @@ app5.layout = html.Div(
                                   html.H2('2D Score Efficiency'),
                                   dcc.Graph(
                                       id='gapminder4', config={'displayModeBar': True}
-                                  )
+                                  ),
+                                  html.Div(id='app5text', children='Here is a text box')
                               ])  # Define the right element
                  ])
     ])
@@ -231,16 +233,15 @@ app6.layout = html.Div(
                                                             style={'backgroundColor': '#1E1E1E'},
                                                             className='stockselector')
                                            ],
-                                           style={'color': '#1E1E1E'}),html.Div(),
-                                  html.Br(),html.Br(),html.Br(),html.Br(),
-                                  html.Div(id='app6text', children='123')
+                                           style={'color': '#1E1E1E'}), html.Div()
+
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
                                   html.H2('Pie Chart'),
-                                  html.Div([html.Img(id='gapminder5', src='')]),
-
+                                  html.Div(className='row', children=[html.Img(id='gapminder5', src=''),html.Img(id='playphoto',src='', alt='Not Found')]),
+                                  html.Div(id='app6text', children='123')
                               ])  # Define the right element
                  ])
     ])
@@ -253,8 +254,7 @@ def home():
 
 @app2.callback(Output('gapminder1', 'figure'), [Input('years', 'value')])
 def update_app(year):
-    return update_app2(year)
-
+    return update_app2()
 
 @app3.callback(Output('gapminder2', 'figure'), [Input('years', 'value')])
 def update_app(year):
@@ -273,7 +273,13 @@ def update_app(year):
 
 @app6.callback(Output('gapminder5', 'src'), [Input('years', 'value'), Input('names', 'value')])
 def update_app(year, name):
-    return update_app6(int(year),name)
+    return update_app6(int(year), name)
+
+
+@app6.callback(Output('playphoto', 'src'), [Input('names', 'value')])
+def update_app(name):
+    return update_photo6(name)
+
 
 
 @app6.callback(Output('names', 'options'), [Input('years', 'value')])
@@ -283,9 +289,10 @@ def update_options(year):
     names = df['PLAYER_NAME']
     return get_options(names)
 
+
 @app6.callback(Output('app6text', 'children'), [Input('years', 'value'), Input('names', 'value')])
 def update_text(year, name):
-    return "In year {0}, {1} performs very well!".format(year,name)
+    return "In year {0}, {1} performs very well!".format(year, name)
 
 
 if __name__ == '__main__':

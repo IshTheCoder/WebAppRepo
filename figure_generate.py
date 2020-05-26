@@ -7,13 +7,15 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 from pca import k_means, top5_img
-from scatter import scatter_plot_in
+from scatter import *
 from navbar import Navbar
 from pie_chart import draw_pie_chart
 import dash_bootstrap_components as dbc
 import flask
 import matplotlib
 from effi import plot_most_effi_figure
+import os
+from pie_chart import fig_to_uri
 
 
 def update_app1():
@@ -49,44 +51,9 @@ def update_app1():
     return fig
 
 
-def update_app2(year):
-    colorscale_curr = [[0.0, "rgb(165,0,38)"],
-                       [0.1111111111111111, "rgb(215,48,39)"],
-                       [0.2222222222222222, "rgb(244,109,67)"],
-                       [0.3333333333333333, "rgb(253,174,97)"],
-                       [0.4444444444444444, "rgb(254,224,144)"],
-                       [0.5555555555555556, "rgb(224,243,248)"],
-                       [0.6666666666666666, "rgb(171,217,233)"],
-                       [0.7777777777777778, "rgb(116,173,209)"],
-                       [0.8888888888888888, "rgb(69,117,180)"],
-                       [1.0, "rgb(49,54,149)"]]
-    colorscale_curr.reverse()
-    x_1, y_1, names = scatter_plot_in("data/data_cleaned/poss_ppp_data/poss" + year + '.csv')
-    figure = {
-        'data': [
-            go.Scatter(x=x_1,
-                       y=y_1,
-                       text=names,
-                       hoverinfo='text',
-                       mode='markers',
-                       marker=dict(color=y_1,
-                                   colorscale=colorscale_curr,
-                                   size=12,
-                                   line=dict(width=2, color='DarkSlateGrey')
-                                   )
-                       )
-        ],
-        'layout':
-            dict(
-                title='2-D scatter plot',
-                xaxis={'title': 'Possessions'},
-                yaxis={'title': 'PPP'},
-                hovermode='closest',
-                template='plotly_dark'
-            )
-    }
+def update_app2():
+    return create_slider_scatter(['2015','2016','2017','2018','2019'], 'Points Per Possession vs Possessions', 'PPP', 'Possessions')
 
-    return figure
 
 
 def update_app3(year):
@@ -139,3 +106,12 @@ def update_app4():
 
 def update_app6(year, name):
     return draw_pie_chart(name, int(year))
+
+def update_photo6(name):
+    name=name.lower()
+    name = ''.join(name.split())
+    file="assets/"+name+'.png'
+    if not os.path.exists(file):
+        return ''
+    else:
+        return file
