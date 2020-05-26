@@ -19,37 +19,47 @@ from pie_chart import fig_to_uri
 
 
 def update_app1():
-    final_list = ['2015', '2016', '2017', '2018', '2019']
-    cluster_num = {'2015': 5, '2016': 6, '2017': 7, '2018': 8, '2019': 8}
     fig = go.Figure()
+    final_list = ['2015', '2016', '2017', '2018', '2019']
+    dims = [5, 6, 7, 8, 8]
     count = 0
 
     for each in final_list:
-        names, X, labels, _ = k_means("data/data_cleaned/pca_data/" + each + '_pca_table.csv', dim=3,
-                                      cluster_num=cluster_num[each])
+        names, X, labels,_ = k_means('data/data_cleaned/pca_data/' + each + '_pca_table.csv', dim=3,
+                                   cluster_num=dims[count])
         count += 1
-        fig.add_trace(go.Scatter3d(x=X[:, 1], y=X[:, 0], z=X[:, 2], text=names, hoverinfo='text', mode='markers',
-                                   marker=dict(color=labels), visible=False, name="Player Clusters for " + each))
-        steps = []
-        for i in range(len(fig.data)):
-            step = dict(
-                method="restyle",
-                args=["visible", [False] * len(fig.data)],
-                label='Year ' + str(i + 2015)
-            )
-            step["args"][1][i] = True  # Toggle i'th trace to "visible"
-            steps.append(step)
-        sliders = [dict(active=5,
-                        currentvalue={"prefix": "Year: "},
-                        pad={"t": 5},
-                        steps=steps)]
-        start_index = 2015
-        fig.update_layout(
-            sliders=sliders,
-            title={"text": "Scoring Clusters Per Year"}
+        fig.add_trace(
+            go.Scatter3d(x=X[:, 1], y=X[:, 0], z=X[:, 2], text=names, hoverinfo='text', mode='markers',
+                         marker=dict(color=labels), visible=False, name="Player Clusters for " + each)
         )
-    return fig
 
+    # print(len(fig.data))
+    fig.data[0].visible = True
+
+    steps = []
+    for i in range(len(fig.data)):
+        step = dict(
+            method="restyle",
+            args=["visible", [False] * len(fig.data)],
+            label='Year ' + str(i + 2015)
+
+        )
+        step["args"][1][i] = True  # Toggle i'th trace to "visible"
+        steps.append(step)
+
+    sliders = [dict(
+        active=5,
+        currentvalue={"prefix": "Year: "},
+        pad={"t": 5},
+        steps=steps
+    )]
+    start_index = 2015
+    fig.update_layout(
+        sliders=sliders,
+        # title = "9 Cluster classification of players based on Scoring Styles"
+        title={"text": "Scoring Clusters Per Year"}
+    )
+    return fig
 
 def update_app2():
     return create_slider_scatter(['2015','2016','2017','2018','2019'], 'Points Per Possession vs Possessions', 'PPP', 'Possessions')
