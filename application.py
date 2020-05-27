@@ -54,27 +54,16 @@ app.layout = html.Div(
                  children=[
                      html.Div(className='four columns div-user-controls',
                               children=[
-                                  html.H2('Years options'),
-                                  html.Div(className='div-for-dropdown',
-                                           children=[
-                                               dcc.Dropdown(id='years',
-                                                            options=get_options(
-                                                                ['2015', '2016', '2017', '2018', '2019']),
-                                                            multi=False,
-                                                            value='2015',
-                                                            style={'backgroundColor': '#1E1E1E'},
-                                                            className='stockselector')
-                                           ],
-                                           style={'color': '#1E1E1E'})
+                                  html.H2('Description'),
+                                  html.Div(id='app1text', children='Here is a text box')
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
-                                  html.H2('ECE229-PCA'),
+                                  html.H2('3D scatter plot'),
                                   dcc.Graph(
-                                      id='gapminder', config={'displayModeBar': True}, figure=update_app1()
-                                  ),
-                                  html.Div(id='app1text', children='Here is a text box')
+                                      figure=update_app1(), config={'displayModeBar': True}
+                                  )
                               ])  # Define the right element
                  ])
     ])
@@ -86,31 +75,16 @@ app2.layout = html.Div(
                  children=[
                      html.Div(className='four columns div-user-controls',
                               children=[
-                                  html.H2('Years options'),
-                                  html.Div(className='div-for-dropdown',
-                                           children=[
-                                               dcc.Dropdown(id='years',
-                                                            options=get_options(
-                                                                ['2015', '2016', '2017', '2018', '2019']),
-                                                            multi=False,
-                                                            value='2015',
-                                                            style={'backgroundColor': '#1E1E1E'},
-                                                            className='stockselector')
-                                           ],
-                                           style={'color': '#1E1E1E'})
+                                  html.H2('Description'),
+                                  html.Div(id='app2text', children='Here is a text box')
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
-                                  # Sniphx.H2('ECE229-PCA'),
-                                  # dcc.Graph(
-                                  #     id='gapminder', config={'displayModeBar': False}
-                                  # ),
                                   html.H2('2D scatter plot'),
                                   dcc.Graph(
-                                      id='gapminder1', config={'displayModeBar': True}
-                                  ),
-                                  html.Div(id='app2text', children='Here is a text box')
+                                      figure=update_app2(), config={'displayModeBar': True}
+                                  )
                               ])  # Define the right element
                  ])
     ])
@@ -133,7 +107,9 @@ app3.layout = html.Div(
                                                             style={'backgroundColor': '#1E1E1E'},
                                                             className='stockselector')
                                            ],
-                                           style={'color': '#1E1E1E'})
+                                           style={'color': '#1E1E1E'}),
+                                  html.H2('Description'),
+                                  html.Div(id='app3text', children='Here is a text box')
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
@@ -141,8 +117,7 @@ app3.layout = html.Div(
                                   html.H2('Top5_different years'),
                                   dcc.Graph(
                                       id='gapminder2', config={'displayModeBar': True}
-                                  ),
-                                  html.Div(id='app3text', children='Here is a text box')
+                                  )
                               ])  # Define the right element
                  ])
     ])
@@ -252,9 +227,9 @@ def home():
     return flask.redirect('page1')
 
 
-@app2.callback(Output('gapminder1', 'figure'), [Input('years', 'value')])
-def update_app(year):
-    return update_app2()
+# @app2.callback(Output('gapminder1', 'figure'), [Input('years', 'value')])
+# def update_app(year):
+#     return update_app2()
 
 @app3.callback(Output('gapminder2', 'figure'), [Input('years', 'value')])
 def update_app(year):
