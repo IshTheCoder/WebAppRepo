@@ -129,25 +129,14 @@ app4.layout = html.Div(
                  children=[
                      html.Div(className='four columns div-user-controls',
                               children=[
-                                  html.H2('Years options'),
-                                  html.Div(className='div-for-dropdown',
-                                           children=[
-                                               dcc.Dropdown(id='years',
-                                                            options=get_options(
-                                                                ['2015', '2016', '2017', '2018', '2019']),
-                                                            multi=False,
-                                                            value='2015',
-                                                            style={'backgroundColor': '#1E1E1E'},
-                                                            className='stockselector')
-                                           ],
-                                           style={'color': '#1E1E1E'})
+                                  html.H2('Description'),
+                                  html.Div(id='app4text', children='Here is a text box')
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
                                   html.H2('Efficiency'),
-                                  html.Div([html.Img(id='gapminder3', src='')]),
-                                  html.Div(id='app4text', children='Here is a text box')
+                                  html.Img(src=update_app4())
                               ])  # Define the right element
                  ])
     ])
@@ -227,18 +216,9 @@ def home():
     return flask.redirect('page1')
 
 
-# @app2.callback(Output('gapminder1', 'figure'), [Input('years', 'value')])
-# def update_app(year):
-#     return update_app2()
-
 @app3.callback(Output('gapminder2', 'figure'), [Input('years', 'value')])
 def update_app(year):
     return update_app3(year)
-
-
-@app4.callback(Output('gapminder3', 'src'), [Input('years', 'value')])
-def update_app(year):
-    return update_app4()
 
 
 @app5.callback(Output('gapminder4', 'figure'), [Input('years', 'value')])
