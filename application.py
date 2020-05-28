@@ -85,12 +85,12 @@ app2.layout = html.Div(
                      html.Div(className='four columns div-user-controls',
                               children=[
                                   html.H2('Description'),
-                                  html.Div(id='app2text', children='Here is a text box')
+                                  html.Div(id='app2text', children='This plot allows us to see how player volume scales with scoring efficiency. This is an important plot, as in order to understand extraordinary scoring, we must also understand scoring burdens. As a team, this will allow you to contextualize your players performances against the rest of the league. As a fanatic you can just enjoy the greatness of the outliers.')
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
-                                  html.H2('2D scatter plot'),
+                                  html.H2('Scoring Efficiency vs Volume'),
                                   dcc.Graph(
                                       figure=update_app2(), config={'displayModeBar': True}
                                   )
