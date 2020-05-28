@@ -55,14 +55,12 @@ def sim_com(df1, df2, team, num_poss = 0):
 
 
 
-	print(len(diff_list))
+	# print(len(diff_list))
 	#df1['Similarity Score'] = df1.apply(lambda row: jensen_shannon_distance(row[pt_abrv], df2[pt_abrv]) , axis=1)
 	df_temp['Similarity Score'] = diff_list
 	df_temp['Complement Score'] = df_temp.apply(lambda row: 1-row['Similarity Score'] , axis=1)
 
 	df_temp = df_temp[df_temp['total_poss'] >= num_poss]
-
-
 
 	return df_temp
 

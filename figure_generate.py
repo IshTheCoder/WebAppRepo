@@ -16,6 +16,7 @@ import matplotlib
 from effi import plot_most_effi_figure
 import os
 from pie_chart import fig_to_uri
+from sim_com import *
 
 
 def update_app1():
@@ -115,6 +116,11 @@ def update_app3(year):
 def update_app4():
     return plot_most_effi_figure("data/data_cleaned/poss_ppp_data")
 
+def update_app5(year,name):
+    df1 = pd.read_csv('data2/updated_players_csv/'+year+'_profile_table.csv')
+    df2 = pd.read_csv('data2/teams_csv/teams_'+year+'_profile_table.csv')
+    df5 = sim_com(df1, df2, name, num_poss=200)
+    return df5.to_dict('row')
 
 def update_app6(year, name):
     return draw_pie_chart(name, int(year))

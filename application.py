@@ -14,6 +14,8 @@ import dash_bootstrap_components as dbc
 import flask
 import matplotlib
 from effi import plot_most_effi_figure
+import dash_table
+from sim_com import sim_com
 from figure_generate import *
 
 
@@ -27,9 +29,18 @@ def get_options(list_stocks):
 
 matplotlib.use('agg')
 
+# for page6
 path = "data/data_cleaned/pca_data/2015_pca_table.csv"
 df = pd.read_csv(path)
 names = df['PLAYER_NAME']
+
+#for page5
+# df1 = pd.read_csv('data2/updated_players_csv/2019_profile_table.csv')
+# df2 = pd.read_csv('data2/teams_csv/teams_2019_profile_table.csv')
+# df5 = sim_com(df1, df2, 'Dallas Mavericks', num_poss=200)
+# names5=df5['PLAYER_NAME']
+
+
 
 app_flask = flask.Flask(__name__)
 
@@ -157,19 +168,43 @@ app5.layout = html.Div(
                                                             multi=False,
                                                             value='2015',
                                                             style={'backgroundColor': '#1E1E1E'},
+                                                            className='stockselector'),
+                                                dcc.Dropdown(id='names',
+                                                            options='',
+                                                            multi=False,
+                                                            value='Brook Lopez',
+                                                            style={'backgroundColor': '#1E1E1E'},
                                                             className='stockselector')
                                            ],
-                                           style={'color': '#1E1E1E'})
+                                           style={'color': '#1E1E1E'}),
+                                  html.H2('Description'),
+                                  html.Div(id='app3text', children='Here is a text box')
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
                                   html.H2('2D Score Efficiency'),
-                                  dcc.Graph(
-                                      id='gapminder4', config={'displayModeBar': True}
-                                  ),
+                                  html.Div(dash_table.DataTable(
+                                      id="gapminder4",
+                                      columns=[{'id': c, 'name': c} for c in ['PLAYER_NAME', 'TEAM_NAME', 'total_poss',
+                                                                              'Similarity Score', 'Complement Score']],
+                                      page_size=10,
+                                      style_header={
+                                          'backgroundColor': 'white',
+                                          'fontWeight': 'bold',
+                                          'textAlign': 'center',
+                                          'color': 'black'
+                                      },
+                                      style_cell={'padding': '5px',
+                                                  'backgroundColor': 'white',
+                                                  'fontWeight': 'bold',
+                                                  'textAlign': 'center',
+                                                  'color': 'black',
+                                                  'width': '60px'
+                                                  }
+                                  )),
                                   html.Div(id='app5text', children='Here is a text box')
-                              ])  # Define the right element
+                              ])
                  ])
     ])
 
@@ -204,7 +239,8 @@ app6.layout = html.Div(
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
                                   html.H2('Pie Chart'),
-                                  html.Div(children=[html.Img(id='gapminder5', src=''),html.Img(id='playphoto',src='', alt='Not Found')]),
+                                  html.Div(children=[html.Img(id='gapminder5', src=''),
+                                                     html.Img(id='playphoto', src='', alt='Not Found')]),
                                   html.Div(id='app6text', children='123')
                               ])  # Define the right element
                  ])
@@ -221,9 +257,19 @@ def update_app(year):
     return update_app3(year)
 
 
-@app5.callback(Output('gapminder4', 'figure'), [Input('years', 'value')])
-def update_app(year):
-    return update_app1()
+@app5.callback(Output('gapminder4', 'data'), [Input('years', 'value'),Input('names', 'value')])
+def update_app(year,name):
+    return update_app5(year,name)
+
+@app5.callback(Output('names', 'options'), [Input('years', 'value')])
+def update_options(year):
+    path5 = 'data2/teams_csv/teams_'+year+'_profile_table.csv'
+    df5 = pd.read_csv(path5)
+    names5 = df5['TEAM_NAME']
+    name_new = []
+    for i in names5:
+        name_new.append(i)
+    return get_options(name_new)
 
 
 @app6.callback(Output('gapminder5', 'src'), [Input('years', 'value'), Input('names', 'value')])
@@ -234,7 +280,6 @@ def update_app(year, name):
 @app6.callback(Output('playphoto', 'src'), [Input('names', 'value')])
 def update_app(name):
     return update_photo6(name)
-
 
 
 @app6.callback(Output('names', 'options'), [Input('years', 'value')])
