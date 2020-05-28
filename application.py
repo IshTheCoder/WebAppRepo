@@ -182,39 +182,37 @@ app5.layout = html.Div(
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
                                   html.H2('2D Score Efficiency'),
-                                  html.Div(className='div-for-charts',
-                                           children=[DataTable(
-                                                      id="gapminder4",
-                                                      columns=[{'id': c, 'name': nameList[c]} for c in
-                                                                ['PLAYER_NAME', 'TEAM_NAME', 'total_poss',
-                                                                'Similarity Score', 'Complement Score']],
-                                                      page_size=10,
-                                                      style_header={
-                                                          'backgroundColor': 'white',
-                                                          'fontWeight': 'bold',
-                                                          'textAlign': 'center',
-                                                          'color': 'black'
-                                                      },
-                                                      style_cell={'padding': '5px',
-                                                                  'backgroundColor': 'white',
-                                                                  'fontWeight': 'bold',
-                                                                  'textAlign': 'center',
-                                                                  'color': 'black',
-                                                                  'width': '60px'
-                                                      },
-                                                      editable=True,
-                                                      filter_action="native",
-                                                      sort_action="native",
-                                                      sort_mode="multi",
-                                                      column_selectable="single",
-                                                      row_selectable="multi",
-                                                      row_deletable=True,
-                                                      selected_columns=[],
-                                                      selected_rows=[],
-                                                      page_action="native",
-                                                      page_current=0
-                                                    )
-                                           ], style={'width': '95%'}
+                                  DataTable(
+                                    id="gapminder4",
+                                    columns=[{'id': c, 'name': nameList[c]} for c in
+                                              ['PLAYER_NAME', 'TEAM_NAME', 'total_poss',
+                                              'Similarity Score', 'Complement Score']],
+                                    page_size=10,
+                                    style_header={
+                                        'backgroundColor': 'white',
+                                        'fontWeight': 'bold',
+                                        'textAlign': 'center',
+                                        'color': 'black'
+                                    },
+                                    style_cell={'padding': '5px',
+                                                'backgroundColor': 'white',
+                                                'fontWeight': 'bold',
+                                                'textAlign': 'center',
+                                                'color': 'black',
+                                                'width': '60px'
+                                    },
+                                    editable=True,
+                                    filter_action="native",
+                                    sort_action="native",
+                                    sort_mode="multi",
+                                    column_selectable="single",
+                                    row_selectable="multi",
+                                    row_deletable=True,
+                                    selected_columns=[],
+                                    selected_rows=[],
+                                    page_action="native",
+                                    page_current=0,
+                                    style_table = {'overflowX': 'auto', 'width': '98%'}
                                   )
                               ])
                  ])
