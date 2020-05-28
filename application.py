@@ -201,7 +201,18 @@ app5.layout = html.Div(
                                                   'textAlign': 'center',
                                                   'color': 'black',
                                                   'width': '60px'
-                                                  }
+                                                  },
+                                        editable=True,
+                                        filter_action="native",
+                                        sort_action="native",
+                                        sort_mode="multi",
+                                        column_selectable="single",
+                                        row_selectable="multi",
+                                        row_deletable=True,
+                                        selected_columns=[],
+                                        selected_rows=[],
+                                        page_action="native",
+                                        page_current= 0
                                   )),
                                   html.Div(id='app5text', children='Here is a text box')
                               ])
