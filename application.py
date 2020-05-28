@@ -64,12 +64,12 @@ app.layout = html.Div(
                      html.Div(className='four columns div-user-controls',
                               children=[
                                   html.H2('Description'),
-                                  html.Div(id='app1text', children='Here is a text box')
+                                  html.Div(id='app1text', children='This is a K-means clustering of player roles over the last 5 years, based on play-style. Using the distribution and efficiency of play-style, we have managed to redefine player roles over the period of the analytics shift in basketball. As a team or a fanatic, this allows you to get a better understanding of the NBA landscape and find players that fit the modern roles better.')
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
-                                  html.H2('3D scatter plot'),
+                                  html.H2('K-Means clustering for new-era player roles'),
                                   dcc.Graph(
                                       figure=update_app1(), config={'displayModeBar': True}
                                   )
