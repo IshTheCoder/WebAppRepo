@@ -118,12 +118,12 @@ app3.layout = html.Div(
                                            ],
                                            style={'color': '#1E1E1E'}),
                                   html.H2('Description'),
-                                  html.Div(id='app3text', children='Here is a text box')
+                                  html.Div(id='app3text', children='The graph here shows the playtype distributions of the 5 players that best match each of the archetypes created by K-Means clustering. This allows teams a look into the type of contributions they can expect from each archetype, by using existing players as examples of the playstyles. ')
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
-                                  html.H2('Top5_different years'),
+                                  html.H2('Top 5 players that personify each cluster archetype'),
                                   dcc.Graph(
                                       id='gapminder2', config={'displayModeBar': True}
                                   )
@@ -139,12 +139,12 @@ app4.layout = html.Div(
                      html.Div(className='four columns div-user-controls',
                               children=[
                                   html.H2('Description'),
-                                  html.Div(id='app4text', children='Here is a text box')
+                                  html.Div(id='app4text', children='Here we plot the play-type efficiency for each of the years, this will allow us to understand, what the efficiency is for each playtype on a league-wide basis. Teams are encouraged to construct plays that generate the highest yield. For fanatics, this can provide a rationale behind changing team strategy over the years.')
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
-                                  html.H2('Efficiency'),
+                                  html.H2('Playtype efficiency over the years'),
                                   html.Img(src=update_app4())
                               ])  # Define the right element
                  ])
@@ -176,12 +176,12 @@ app5.layout = html.Div(
                                            ],
                                            style={'color': '#1E1E1E'}),
                                   html.H2('Description'),
-                                  html.Div(id='app5text', children='Here is a text box')
+                                  html.Div(id='app5text', children='We have used playtype data and Jensen Shannon divergence to find the best fit players for each team. As a team, you would prefer to target players who are best suited to your current playstyle, or would add a new dimension to your offensive capabilities. The similar players are the ones that would best slot into the teams current distribution with the most synergy. The complement score gives you players that are proficient in the areas that the selected team is weakest in.')
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
                               children=[
-                                  html.H2('2D Score Efficiency'),
+                                  html.H2('Best fit player targets'),
                                   DataTable(
                                     id="gapminder4",
                                     columns=[{'id': c, 'name': nameList[c]} for c in
@@ -303,7 +303,7 @@ def update_options(year):
 
 @app6.callback(Output('app6text', 'children'), [Input('years', 'value'), Input('names', 'value')])
 def update_text(year, name):
-    return "In year {0}, {1} performs very well!".format(year, name)
+    return "Here we can see the selected player's playstyle for the given year. We can see how over time these playstyles may change due to trends in the league. Some prominent examples would be brook Lopez's transformation from a traditional back to the basket center to a sport-up shooter."
 
 
 if __name__ == '__main__':
