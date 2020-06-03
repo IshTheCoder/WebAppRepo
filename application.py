@@ -160,14 +160,14 @@ app5.layout = html.Div(
                                   html.H2('Years options'),
                                   html.Div(className='div-for-dropdown',
                                            children=[
-                                               dcc.Dropdown(id='years',
+                                               dcc.Dropdown(id='years5',
                                                             options=get_options(
                                                                 ['2015', '2016', '2017', '2018', '2019']),
                                                             multi=False,
                                                             value='2015',
                                                             style={'backgroundColor': '#1E1E1E'},
                                                             className='stockselector'),
-                                               dcc.Dropdown(id='names',
+                                               dcc.Dropdown(id='names5',
                                                             options='',
                                                             multi=False,
                                                             value='Dallas Mavericks',
@@ -268,12 +268,12 @@ def update_app(year):
     return update_app3(year)
 
 
-@app5.callback(Output('gapminder4', 'data'), [Input('years', 'value'), Input('names', 'value')])
+@app5.callback(Output('gapminder4', 'data'), [Input('years5', 'value'), Input('names5', 'value')])
 def update_app(year, name):
     return update_app5(year, name)
 
 
-@app5.callback(Output('names', 'options'), [Input('years', 'value')])
+@app5.callback(Output('names5', 'options'), [Input('years5', 'value')])
 def update_options(year):
     path5 = 'data2/teams_csv/teams_' + year + '_profile_table.csv'
     df5 = pd.read_csv(path5)
