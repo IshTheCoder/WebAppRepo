@@ -60,8 +60,11 @@ def update_app2():
 
 def update_app3(year):
     category_names = ["Iso", "Tra", "PRB", "PRR", "Pos", "Spo", "Han", "Cut", "Off", "OffR", "Misc"]
-    names, _, _, distance = k_means("data/data_cleaned/pca_data/" + year + '_pca_table.csv', 3, 8)
-    results = top5_img(distance, names, int(year))
+    dims = {"2015": 5, "2016": 6, "2017": 7, "2018": 8, "2019": 8}
+    print(year)
+    print(dims[year])
+    names, _, _, distance = k_means("data/data_cleaned/pca_data/" + year + '_pca_table.csv', 3, dims[year])
+    results = top5_img(distance, names, int(year), dims[year])
     labels = list(results.keys())
     new_labels = []
     start = " "

@@ -104,7 +104,7 @@ def calculate_top5(distance, names):
     return top5_name
 
 
-def top5_img(distance, names, year):
+def top5_img(distance, names, year, cluster_num):
     '''
     :param distance: distance of player to kmeans center
     :param names: player names
@@ -129,7 +129,7 @@ def top5_img(distance, names, year):
     data_per_player = data_per_player / data_per_player.sum(axis=1, keepdims=True)
     # print(data_per_player.shape)
     result = {}
-    for i in range(8):
+    for i in range(cluster_num):
         for j in range(5):
             result[top5names[i][j]] = data_per_player[i * 5 + j, :]
     return result
