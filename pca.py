@@ -34,6 +34,7 @@ def pca_processing(fname, n_comp=3):
 
     return data_pca, player_name
 
+
 def k_means(fname, dim=3, cluster_num=5):
     '''
     Function to cluster the data into cluster_num groups and visualize them in a 3D space
