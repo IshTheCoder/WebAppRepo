@@ -1,22 +1,12 @@
-from dash.dependencies import Input, Output
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
-import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
+
 import plotly.graph_objects as go
 from pca import k_means, top5_img
 from scatter import *
-from navbar import Navbar
 from pie_chart import draw_pie_chart
-import dash_bootstrap_components as dbc
-import flask
-import matplotlib
 from effi import plot_most_effi_figure
 import os
-from pie_chart import fig_to_uri
 from sim_com import *
+from get_img_all import get_img
 
 
 def update_app1():
@@ -128,9 +118,11 @@ def update_app6(year, name):
 
 def update_photo6(name):
     name = name.lower()
+    namelist=name.split()
     name = ''.join(name.split())
     file = "assets/" + name + '.png'
     if not os.path.exists(file):
-        return ''
+        get_img(namelist[0],namelist[1])
+        return file
     else:
         return file

@@ -17,9 +17,7 @@ from effi import plot_most_effi_figure
 from dash_table import DataTable
 from sim_com import sim_com
 from figure_generate import *
-import requests
-import PIL
-from io import StringIO
+from get_img_all import get_img
 
 
 def get_options(list_stocks):
@@ -291,7 +289,7 @@ app6.layout = html.Div(
                               children=[
                                   html.H2('Pie Chart'),
                                   html.Div(children=[html.Img(id='gapminder5', src=''),
-                                                     html.Img(id='playphoto', src='', alt='There is no figure for that player')]),
+                                                     html.Img(id='playphoto', src='', alt='')]),
                                   html.Div(id='app6text', children='123')
                               ])  # Define the right element
                  ])
@@ -327,10 +325,6 @@ def update_app(year, name):
 
 @app6.callback(Output('playphoto', 'src'), [Input('names', 'value')])
 def update_app(name):
-	
-
-
-
     return update_photo6(name)
 
 
