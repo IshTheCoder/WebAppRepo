@@ -42,6 +42,8 @@ nameList = {'PLAYER_NAME': 'Player Name',
 
 app_flask = flask.Flask(__name__)
 
+homepage = dash.Dash(__name__, external_stylesheets=[dbc.themes.UNITED], server=app_flask, url_base_pathname='/')
+
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.UNITED], server=app_flask, url_base_pathname='/page1/')
 
 app2 = dash.Dash(__name__, external_stylesheets=[dbc.themes.UNITED], server=app_flask, url_base_pathname='/page2/')
@@ -54,7 +56,35 @@ app5 = dash.Dash(__name__, external_stylesheets=[dbc.themes.UNITED], server=app_
 
 app6 = dash.Dash(__name__, external_stylesheets=[dbc.themes.UNITED], server=app_flask, url_base_pathname='/page6/')
 
+
 nav = Navbar()
+
+homepage.layout = html.Div(
+    children=[
+        html.Div([nav]),
+        html.Div(className='row',  # Define the row element
+                 children=[
+                     html.Div(className='four columns div-for-charts bg-white',
+                              children=[
+                                  html.Img(id='Homepage',src='assets/home_p1.png',height='660px',width='620px'),
+                                  ]
+                              ),  # Define the left element
+                     html.Div(className='eight columns div-for-charts bg-white',
+                              children=[
+                                  html.Img(id='Homepage2',src='assets/home_p2.png',height='200px',width='420px',
+                                           style={"display": "inline-block"}),
+                                  html.H1(children='Group 2:',style={
+                                      'color':'black'
+                                  }),
+                                  html.H3('Himanshu Gupta'),
+                                  html.H3('Hao zhao'),
+                                  html.H3('Ishan Mehta'),
+                                  html.H3('Sophy Lee'),
+                                  html.H3('Suhrid Subramaniam'),
+                                  html.H3('Yi Yu'),
+                              ])  # Define the right element
+                 ])
+    ])
 
 app.layout = html.Div(
     children=[
@@ -164,15 +194,19 @@ app5.layout = html.Div(
                                                             options=get_options(
                                                                 ['2015', '2016', '2017', '2018', '2019']),
                                                             multi=False,
-                                                            value='2015',
+                                                            value='',
                                                             style={'backgroundColor': '#1E1E1E'},
-                                                            className='stockselector'),
+                                                            placeholder='please pick year',
+                                                            searchable=True
+                                                            ),
                                                dcc.Dropdown(id='names5',
                                                             options='',
                                                             multi=False,
-                                                            value='Dallas Mavericks',
+                                                            value='',
                                                             style={'backgroundColor': '#1E1E1E'},
-                                                            className='stockselector')
+                                                            placeholder='please pick name',
+                                                            searchable=True
+                                                            )
                                            ],
                                            style={'color': '#1E1E1E'}),
                                   html.H2('Description'),
@@ -224,8 +258,6 @@ app6.layout = html.Div(
         html.Div(className='row',  # Define the row element
                  children=[
                      html.Div(className='four columns div-user-controls',
-                              style={'backgroundColor':'white'
-                                     },
                               children=[
                                   html.H2('Years options'),
                                   html.Div(className='div-for-dropdown',
@@ -236,12 +268,14 @@ app6.layout = html.Div(
                                                             value='2015',
                                                             searchable=True,
                                                             style={'backgroundColor':'#1E1E1E'},
+                                                            placeholder='please pick year',
                                                             className='stockselector'),
                                                dcc.Dropdown(id='names',
                                                             options=get_options(names),
                                                             multi=False,
-                                                            value='Brook Lopez',
+                                                            value='James Harden',
                                                             style={'backgroundColor': '#1E1E1E'},
+                                                            placeholder='please pick player',
                                                             className='stockselector')],
                                            style={'backgroundColor':'#1E1E1E'}),
                                   html.Div()
@@ -251,16 +285,12 @@ app6.layout = html.Div(
                               children=[
                                   html.H2('Pie Chart'),
                                   html.Div(children=[html.Img(id='gapminder5', src=''),
-                                                     html.Img(id='playphoto', src='', alt='Not Found')]),
+                                                     html.Img(id='playphoto', src='', alt='There is no figure for that player')]),
                                   html.Div(id='app6text', children='123')
                               ])  # Define the right element
                  ])
     ])
 
-
-@app_flask.route('/')
-def home():
-    return flask.redirect('page1')
 
 
 @app3.callback(Output('gapminder2', 'figure'), [Input('years', 'value')])

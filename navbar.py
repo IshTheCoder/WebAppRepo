@@ -3,6 +3,7 @@ import dash_html_components as html
 def Navbar():
      navbar = dbc.NavbarSimple(
            children=[
+              dbc.Button(html.A('Home', href='/'), color='black'),
               dbc.Button(html.A('Page1', href='/page1'), color='black'),
               dbc.Button(html.A('Page2', href='/page2'), color='black'),
               dbc.Button(html.A("Page3", href="/page3"), color='black'),
@@ -25,8 +26,8 @@ def Navbar():
                       ),
                     ],
             # dbc.NavbarBrand
-          brand="Home",
-          brand_href="/page1",
+          brand="NBA",
+          brand_href="/",
           sticky="top",
         )
      return navbar

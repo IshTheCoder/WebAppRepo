@@ -176,6 +176,7 @@ h3 {
   letter-spacing: -.1rem;
   margin-bottom: 1.5rem;
   margin-top: 1.5rem;
+  color: black;
 }
 h4 {
   font-size: 2.6rem;
@@ -640,15 +641,34 @@ a {
   background-color: #1E1E1E;
   color: white;
 }
+
 #years5 .VirtualizedSelectFocusedOption {
-  background-color: gray;
+  background-color: red;
   color: white;
 }
 #names5 .VirtualizedSelectOption {
   background-color: #1E1E1E;
   color: white;
 }
+
 #names5 .VirtualizedSelectFocusedOption {
-  background-color: gray;
+  background-color: red;
   color: white;
 }
+
+#years5::placeholder {
+  color: red;
+}
+
+.select {
+                appearance: none;
+                outline: 0;
+                background: green;
+                background-image: none;
+                width: 100%;
+                height: 100%;
+                color: black;
+                cursor: pointer;
+                border:1px solid black;
+                border-radius:3px;
+            }
