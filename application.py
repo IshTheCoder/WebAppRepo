@@ -67,17 +67,20 @@ homepage.layout = html.Div(
         html.Div([nav]),
         html.Div(className='row',  # Define the row element
                  children=[
-                     html.Div(className='four columns div-for-charts bg-white',
-                              children=[
-                                  html.Img(id='Homepage',src='assets/home_p1.png',height='660px',width='620px'),
-                                  ]
+                     html.Div(className='four columns div-user-controls bg-black',
+                                  children=[
+                                  html.H2('Description'),
+                                  html.Div(id='app1text', children='This is a K-means clustering of player roles over the last 5 years, based on play-style. Using the distribution and efficiency of play-style, we have managed to redefine player roles over the period of the analytics shift in basketball. As a team or a fanatic, this allows you to get a better understanding of the NBA landscape and find players that fit the modern roles better.')
+                              ]
                               ),  # Define the left element
-                     html.Div(className='eight columns div-for-charts bg-white',
+                     html.Div(className='eight columns div-for-charts bg-black',
+                              style={"display": "flex",
+                                    'align-items':'center'},
                               children=[
-                                  html.Img(id='Homepage2',src='assets/home_p2.png',height='200px',width='420px',
-                                           style={"display": "inline-block"}),
+                                  html.Img(id='Homepage2',src='assets/home_p2.png',height='auto',width='40%',
+                                           ),
                                   html.H1(children='Group 2:',style={
-                                      'color':'black'
+                                      'color':'white'
                                   }),
                                   html.H3('Himanshu Gupta'),
                                   html.H3('Hao zhao'),
