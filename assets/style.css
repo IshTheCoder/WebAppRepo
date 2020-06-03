@@ -476,6 +476,10 @@ a {
   padding-top: 12px;
   padding-bottom: 12px;
 }
+.dropdown-menu {
+    background-color: #222222;
+    color:white;
+}
 .div-for-slider {
   width: 97%;
   text-align: center;

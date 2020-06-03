@@ -224,26 +224,27 @@ app6.layout = html.Div(
         html.Div(className='row',  # Define the row element
                  children=[
                      html.Div(className='four columns div-user-controls',
+                              style={'backgroundColor':'white'
+                                     },
                               children=[
                                   html.H2('Years options'),
                                   html.Div(className='div-for-dropdown',
                                            children=[
                                                dcc.Dropdown(id='years',
-                                                            options=get_options(
-                                                                ['2015', '2016', '2017', '2018', '2019']),
+                                                            options=get_options(['2015', '2016', '2017', '2018', '2019']),
                                                             multi=False,
                                                             value='2015',
-                                                            style={'backgroundColor': '#1E1E1E'},
+                                                            searchable=True,
+                                                            style={'backgroundColor':'#1E1E1E'},
                                                             className='stockselector'),
                                                dcc.Dropdown(id='names',
                                                             options=get_options(names),
                                                             multi=False,
                                                             value='Brook Lopez',
                                                             style={'backgroundColor': '#1E1E1E'},
-                                                            className='stockselector')
-                                           ],
-                                           style={'color': '#1E1E1E'}), html.Div()
-
+                                                            className='stockselector')],
+                                           style={'backgroundColor':'#1E1E1E'}),
+                                  html.Div()
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
