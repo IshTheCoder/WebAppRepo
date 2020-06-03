@@ -632,3 +632,19 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: #d8d8d870 !important;
 }
+#years5 .VirtualizedSelectOption {
+  background-color: #1E1E1E;
+  color: white;
+}
+#years5 .VirtualizedSelectFocusedOption {
+  background-color: gray;
+  color: white;
+}
+#names5 .VirtualizedSelectOption {
+  background-color: #1E1E1E;
+  color: white;
+}
+#names5 .VirtualizedSelectFocusedOption {
+  background-color: gray;
+  color: white;
+}
