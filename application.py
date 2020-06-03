@@ -17,6 +17,9 @@ from effi import plot_most_effi_figure
 from dash_table import DataTable
 from sim_com import sim_com
 from figure_generate import *
+import requests
+import PIL
+from io import StringIO
 
 
 def get_options(list_stocks):
@@ -321,6 +324,10 @@ def update_app(year, name):
 
 @app6.callback(Output('playphoto', 'src'), [Input('names', 'value')])
 def update_app(name):
+	
+
+
+
     return update_photo6(name)
 
 
