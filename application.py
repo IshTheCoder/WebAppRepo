@@ -68,7 +68,7 @@ homepage.layout = html.Div(
                      html.Div(className='four columns div-user-controls bg-black',
                                   children=[
                                   html.H2('Description'),
-                                  html.Div(id='app1text', children='This is a K-means clustering of player roles over the last 5 years, based on play-style. Using the distribution and efficiency of play-style, we have managed to redefine player roles over the period of the analytics shift in basketball. As a team or a fanatic, this allows you to get a better understanding of the NBA landscape and find players that fit the modern roles better.')
+                                  html.Div(id='app1text', children='This Web-App serves as a Sports Intelligence platform for NBA teams. Our target users are NBA front-offices/analytics teams. NBA front offices would wish to explore different tools that would allow them to make informed decisions on NBA player roles and paradigms, in order to select the best-fitting players for their teams.')
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-black',
@@ -98,7 +98,7 @@ app.layout = html.Div(
                      html.Div(className='four columns div-user-controls',
                               children=[
                                   html.H2('Description'),
-                                  html.Div(id='app1text', children='This is a K-means clustering of player roles over the last 5 years, based on play-style. Using the distribution and efficiency of play-style, we have managed to redefine player roles over the period of the analytics shift in basketball. As a team or a fanatic, this allows you to get a better understanding of the NBA landscape and find players that fit the modern roles better.')
+                                  html.Div(id='app1text', children='This is a K-means clustering of player roles over the last 5 years, based on play-style. Using the distribution and efficiency of play-style, we have managed to redefine player roles over the period of the analytics shift in basketball. We look at a PCA of the play-type data across the 5 years, and attempt the best K-means clustering over the last 5 years individually over a fixed axis. An NBA front office could use this chart to gain a better understanding of the NBA role landscape and look at how player roles have changed over the past 5 years. This can be seen in how the points on the graph spread out over the years, allowing for additional clusters. An additional feature to this, is exploring how certain players have changed their roles over their years in the league, through their movement on the fixed axis.')
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
@@ -119,7 +119,7 @@ app2.layout = html.Div(
                      html.Div(className='four columns div-user-controls',
                               children=[
                                   html.H2('Description'),
-                                  html.Div(id='app2text', children='This plot allows us to see how player volume scales with scoring efficiency. This is an important plot, as in order to understand extraordinary scoring, we must also understand scoring burdens. As a team, this will allow you to contextualize your players performances against the rest of the league. As a fanatic you can just enjoy the greatness of the outliers.')
+                                  html.Div(id='app2text', children='This plot allows us to see how player volume scales with scoring efficiency. This is an important plot, as in order to understand extraordinary scoring, we must also understand scoring burdens. This allows an NBA front office to contextualize specific players performances against the rest of the league. Thus we can select players with scoring volume-efficiency balance a specific team needs.')
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
@@ -152,7 +152,7 @@ app3.layout = html.Div(
                                            ],
                                            style={'color': '#1E1E1E'}),
                                   html.H2('Description'),
-                                  html.Div(id='app3text', children='The graph here shows the playtype distributions of the 5 players that best match each of the archetypes created by K-Means clustering. This allows teams a look into the type of contributions they can expect from each archetype, by using existing players as examples of the playstyles. ')
+                                  html.Div(id='app3text', children='The graph here shows the playtype distributions of the 5 players that best match each of the archetypes created by K-Means clustering. This allows teams a look into the type of contributions they can expect from each archetype, by using existing players as examples of the playstyles. This is a useful tool for a front office that supplements the previous chart, since while it is difficult to name the clusters, we may still view the style of play embodied by the clusters, and choose the players from the clusters that best serve the current needs of a team')
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
@@ -173,7 +173,7 @@ app4.layout = html.Div(
                      html.Div(className='four columns div-user-controls',
                               children=[
                                   html.H2('Description'),
-                                  html.Div(id='app4text', children='Here we plot the play-type efficiency for each of the years, this will allow us to understand, what the efficiency is for each playtype on a league-wide basis. Teams are encouraged to construct plays that generate the highest yield. For fanatics, this can provide a rationale behind changing team strategy over the years.')
+                                  html.Div(id='app4text', children='Here we plot the play-type efficiency for each of the years, this will allow teams to understand, what the efficiency is for each playtype on a league-wide basis. Teams are encouraged to construct plays that generate the highest yield. For fanatics, this can provide a rationale behind changing team strategy over the years.')
                               ]
                               ),  # Define the left element
                      html.Div(className='eight columns div-for-charts bg-grey',
