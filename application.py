@@ -342,4 +342,4 @@ def update_text(year, name):
 
 
 if __name__ == '__main__':
-    app_flask.run(host="0.0.0.0", debug=True)
+    app_flask.run(host="0.0.0.0")
