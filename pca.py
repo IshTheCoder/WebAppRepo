@@ -22,7 +22,7 @@ def pca_processing(fname, n_comp =3):
     frame_list = ['2015_pca_table.csv', '2016_pca_table.csv','2017_pca_table.csv','2018_pca_table.csv','2019_pca_table.csv']
 
     for each in frame_list:
-        df_new = pd.read_csv('data/data_cleaned/pca_data/'+each)
+        df_new = pd.read_csv("/".join(fname.split('/')[:-1])+"/"+each)
         df_list.append(df_new)
     df_concat = pd.concat(df_list)
     #print(df_concat)
@@ -47,7 +47,6 @@ def pca_processing(fname, n_comp =3):
     pca.fit(data_org)
     data_pca = data_test @ pca.components_.T
     assert len(data_pca) == len(player_name)
-
     return data_pca, player_name
 
 
