@@ -79,8 +79,8 @@ def get_silscores(fname, dim=3):
         if silhouette_avg >= best:
             best = silhouette_avg
             final_clus= cluster_num
-
     return best, final_clus
+
 
 def calculate_top5(distance, names):
     '''
@@ -103,7 +103,7 @@ def calculate_top5(distance, names):
     return top5_name
 
 
-def top5_img(distance, names, year, cluster_num):
+def top5_img(distance, names, year, cluster_num, test = False):
     '''
     :param distance: distance of player to kmeans center
     :param names: player names
@@ -113,6 +113,8 @@ def top5_img(distance, names, year, cluster_num):
     assert 2015 <= year <= 2019
     top5names = calculate_top5(distance, names)
     path = "data/data_cleaned/pca_data/" + str(year) + "_pca_table.csv"
+    if test:
+        path = "../data/data_cleaned/pca_data/" + str(year) + "_pca_table.csv"
     df = pd.read_csv(path)
     data_per_player = np.zeros((1, 11))
     for i in range(len(top5names)):
@@ -125,8 +127,6 @@ def top5_img(distance, names, year, cluster_num):
             data = np.array(data)[0]
             data_per_player = np.vstack((data_per_player, data))
     data_per_player = data_per_player[1:,:]
-    data_per_player = data_per_player / data_per_player.sum(axis=1, keepdims=True)
-    # print(data_per_player.shape)
     result = {}
     for i in range(cluster_num):
         for j in range(5):
