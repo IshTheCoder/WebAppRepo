@@ -94,7 +94,3 @@ def test_top5_img():
     
     result = top5_img(distance, names, year, cluster_num, test = True)
     assert isinstance(result, dict)
-
-    
-    
-    
