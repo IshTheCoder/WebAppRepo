@@ -10,6 +10,8 @@ import plotly.graph_objs as go
 import chart_studio
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 import chart_studio.plotly as py
+flist = ['data/data_cleaned/poss_ppp_data/poss2015.csv', 'data/data_cleaned/poss_ppp_data/poss2016.csv', 'data/data_cleaned/poss_ppp_data/poss2017.csv',
+             'data/data_cleaned/poss_ppp_data/poss2018.csv', 'data/data_cleaned/poss_ppp_data/poss2019.csv']
 def scatter_plot_in(fname):
     '''
     Function that outputs total poss, ppp, and name of each player through 3 lists
@@ -28,8 +30,6 @@ def scatter_plot_in(fname):
     ppp = df_calc.sum(axis=1) / df['total_poss']
     return df['total_poss'].tolist(), ppp.tolist(), df['PLAYER_NAME'].tolist()
 
-flist = ['data/data_cleaned/poss_ppp_data/poss2015.csv', 'data/data_cleaned/poss_ppp_data/poss2016.csv', 'data/data_cleaned/poss_ppp_data/poss2017.csv',
-             'data/data_cleaned/poss_ppp_data/poss2018.csv', 'data/data_cleaned/poss_ppp_data/poss2019.csv']
 
 def create_slider_scatter(fname_list, title_graph, yaxis_label, x_axis_label):
         """

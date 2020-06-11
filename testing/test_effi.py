@@ -5,7 +5,7 @@ import pytest
 import sys
 sys.path.insert(0, '..') # insert everything from .. to path search
 import os
-from effi import *
+from src.effi import *
 import collections
 
 

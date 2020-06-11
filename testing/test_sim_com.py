@@ -4,7 +4,7 @@ sys.path.insert(0, '..') # insert everything from .. to path search
 import os
 import pandas as pd
 import numpy as np
-from sim_com import *
+from src.sim_com import *
 
 
 def test_sim_com():

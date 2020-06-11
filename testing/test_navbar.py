@@ -5,7 +5,7 @@ import os
 import pandas as pd
 import numpy as np
 import dash_bootstrap_components
-from navbar import *
+from src.navbar import *
 
 def test_Navbar():
     '''

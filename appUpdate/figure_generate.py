@@ -1,12 +1,11 @@
-
 import plotly.graph_objects as go
-from pca import k_means, top5_img
-from scatter import *
-from pie_chart import draw_pie_chart
-from effi import plot_most_effi_figure
+from src.pca import k_means, top5_img
+from src.scatter import *
+from src.pie_chart import draw_pie_chart
+from src.effi import plot_most_effi_figure
 import os
-from sim_com import *
-from get_img_all import get_img
+from src.sim_com import *
+from src.get_img_all import get_img
 
 
 def update_app1():
