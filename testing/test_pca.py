@@ -1,6 +1,6 @@
 import pytest
 import sys
-sys.path.insert(0, '..') # insert everything from .. to path search
+sys.path.append('../') # insert everything from .. to path search
 import os
 import pandas as pd
 import numpy as np
