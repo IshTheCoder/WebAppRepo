@@ -5,7 +5,7 @@ from src.pie_chart import draw_pie_chart
 from src.effi import plot_most_effi_figure
 import os
 from src.sim_com import *
-from src.get_img_all import get_img
+from appUpdate.get_img_all import get_img
 
 
 def update_app1():

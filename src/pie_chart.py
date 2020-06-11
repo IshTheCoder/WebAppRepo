@@ -1,21 +1,8 @@
-from dash.dependencies import Input, Output
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import plotly.graph_objects as go
-from pca import k_means, top5_img
-from scatter import  scatter_plot_in
-from navbar import Navbar
-import dash_bootstrap_components as dbc
-import flask
 from io import BytesIO
 import base64
-from plotly.tools import mpl_to_plotly
-import plotly.express as px
-import matplotlib
 
 def func(pct, allvals):
     absolute = int(pct/100.*np.sum(allvals))

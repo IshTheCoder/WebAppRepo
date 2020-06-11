@@ -3,8 +3,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from collections import defaultdict
-from plotly.tools import mpl_to_plotly
-from pie_chart import fig_to_uri
+
+from src.pie_chart import fig_to_uri
 
 playtypes = ['cut', 'ho', 'iso', 'misc',
              'os', 'prb', 'prr', 'pu',
@@ -80,7 +80,3 @@ def plot_most_effi_figure(aggr_data, outdir=None):
     # plotly_fig = mpl_to_plotly(fig)
     uri = fig_to_uri(fig)
     return uri
-
-
-
-# plot_most_effi_figure("data/data_cleaned/poss_ppp_data")

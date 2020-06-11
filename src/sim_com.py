@@ -66,11 +66,3 @@ def sim_com(df1, df2, team, num_poss = 0):
 
 
 
-
-def unit_test():
-	df1 = pd.read_csv('data2/updated_players_csv/2019_profile_table.csv')
-	df2 = pd.read_csv('data2/teams_csv/teams_2019_profile_table.csv')
-	return sim_com(df1,df2,'Dallas Mavericks', num_poss = 200)
-
-#print(unit_test())
-

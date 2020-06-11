@@ -1,12 +1,7 @@
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
-
 import pandas as pd
 from sklearn.cluster import KMeans
 import numpy as np
 from sklearn.decomposition import PCA
-import plotly.graph_objects as go
 from sklearn.metrics import silhouette_score
 
 

@@ -4,20 +4,13 @@ import dash_core_components as dcc
 import dash_html_components as html
 import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
-import plotly.graph_objects as go
-from pca import k_means, top5_img
-from scatter import scatter_plot_in
-from navbar import Navbar
-from pie_chart import draw_pie_chart
+from src.navbar import Navbar
 import dash_bootstrap_components as dbc
 import flask
 import matplotlib
-from effi import plot_most_effi_figure
 from dash_table import DataTable
-from sim_com import sim_com
-from figure_generate import *
-from get_img_all import get_img
+from appUpdate.figure_generate import *
+
 
 
 def get_options(list_stocks):

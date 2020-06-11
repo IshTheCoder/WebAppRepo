@@ -1,15 +1,6 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.cluster import KMeans
-import numpy as np
-from mpl_toolkits.mplot3d import Axes3D
-from sklearn.decomposition import PCA
-from sklearn import cluster
-import plotly
 import plotly.graph_objs as go
-import chart_studio
-from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
-import chart_studio.plotly as py
+
 flist = ['data/data_cleaned/poss_ppp_data/poss2015.csv', 'data/data_cleaned/poss_ppp_data/poss2016.csv', 'data/data_cleaned/poss_ppp_data/poss2017.csv',
              'data/data_cleaned/poss_ppp_data/poss2018.csv', 'data/data_cleaned/poss_ppp_data/poss2019.csv']
 def scatter_plot_in(fname):
