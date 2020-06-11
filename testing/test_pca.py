@@ -1,10 +1,10 @@
 import pytest
 import sys
-sys.path.append('../') # insert everything from .. to path search
+sys.path.insert(0, '..') # insert everything from .. to path search
 import os
 import pandas as pd
 import numpy as np
-from pca import *
+from src.pca import *
 
 def test_pca_processing():
     '''This function tests pca_processing which reads the different years data and reduces 

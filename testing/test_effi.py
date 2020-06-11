@@ -3,9 +3,9 @@ This folder tests all functions in effi.py
 '''
 import pytest
 import sys
-sys.path.append('../') # insert everything from .. to path search
+sys.path.insert(0, '..') # insert everything from .. to path search
 import os
-from effi import *
+from src.effi import *
 import collections
 
 
