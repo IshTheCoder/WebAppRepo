@@ -1,16 +1,18 @@
 import pytest
 import sys
-sys.path.insert(0, '..') # insert everything from .. to path search
+sys.path.insert(0, '..')
 import os
 import pandas as pd
 import numpy as np
-from pca import *
+
+
 
 def test_pca_processing():
     '''This function tests pca_processing which reads the different years data and reduces 
     the dimension of the players based on their POSS_PCT
     '''
-    fname = '../data/data_cleaned/pca_data/'
+    from pca import pca_processing
+    fname = 'data/data_cleaned/pca_data/'
     frame_list = ['2015_pca_table.csv', '2016_pca_table.csv','2017_pca_table.csv','2018_pca_table.csv','2019_pca_table.csv']
     for frame in frame_list:
         path = os.path.join(fname, frame)
@@ -25,7 +27,8 @@ def test_pca_processing():
 def test_k_means():
     '''This function tests k-means clustering for corner cases
     '''
-    fname = '../data/data_cleaned/pca_data/'
+    from pca import k_means
+    fname = '/data/data_cleaned/pca_data/'
     frame_list = ['2015_pca_table.csv', '2016_pca_table.csv','2017_pca_table.csv','2018_pca_table.csv','2019_pca_table.csv']
     for frame in frame_list:
         path = os.path.join(fname, frame)
@@ -42,7 +45,8 @@ def test_k_means():
 def test_get_silscores():
     '''This function tests the get silhoutte scores function
     '''
-    fname = '../data/data_cleaned/pca_data/'
+    from pca import get_silscores
+    fname = '/data/data_cleaned/pca_data/'
     frame_list = ['2015_pca_table.csv', '2016_pca_table.csv','2017_pca_table.csv','2018_pca_table.csv','2019_pca_table.csv']
     for frame in frame_list:
         path = os.path.join(fname, frame)
@@ -55,7 +59,8 @@ def test_get_silscores():
 def test_calculate_top5():
     ''' Test function for calculate_top5 which finds the top5 players who are the most closest to the k-means's cluster center
     '''
-    fname = '../data/data_cleaned/pca_data/'
+    from pca import k_means,calculate_top5
+    fname = 'data/data_cleaned/pca_data/'
     frame_list = ['2015_pca_table.csv', '2016_pca_table.csv','2017_pca_table.csv','2018_pca_table.csv','2019_pca_table.csv']
     for frame in frame_list:
         path = os.path.join(fname, frame)
@@ -77,10 +82,11 @@ def test_calculate_top5():
 def test_top5_img():
     '''
     '''
+    from pca import k_means,top5_img
     year = 2019
     cluster_num = 5
     assert 2015 <= year <= 2019
-    fname = '../data/data_cleaned/pca_data/'
+    fname = 'data/data_cleaned/pca_data/'
     frame_list = ['2015_pca_table.csv', '2016_pca_table.csv','2017_pca_table.csv','2018_pca_table.csv','2019_pca_table.csv']
     for frame in frame_list:
         path = os.path.join(fname, frame)
