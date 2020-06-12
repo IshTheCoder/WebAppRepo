@@ -4,12 +4,12 @@ def Navbar():
      navbar = dbc.NavbarSimple(
            children=[
               dbc.Button(html.A('Home', href='/'), color='black'),
-              dbc.Button(html.A('Page1', href='/page2'), color='black'),
-              dbc.Button(html.A('Page2', href='/page4'), color='black'),
-              dbc.Button(html.A("Page3", href="/page1"), color='black'),
-              dbc.Button(html.A("Page4", href="/page3"), color='black'),
-              dbc.Button(html.A("Page5", href="/page6"), color='black'),
-              dbc.Button(html.A("Page6", href="/page5"), color='black'),
+              dbc.Button(html.A('Page1', href='/page1'), color='black'),
+              dbc.Button(html.A('Page2', href='/page2'), color='black'),
+              dbc.Button(html.A("Page3", href="/page3"), color='black'),
+              dbc.Button(html.A("Page4", href="/page4"), color='black'),
+              dbc.Button(html.A("Page5", href="/page5"), color='black'),
+              dbc.Button(html.A("Page6", href="/page6"), color='black'),
               dbc.DropdownMenu(
                  nav=True,
                  in_navbar=True,
