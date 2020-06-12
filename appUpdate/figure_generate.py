@@ -8,7 +8,15 @@ from src.sim_com import *
 from appUpdate.get_img_all import get_img
 
 
+"""
+Updates each of the Application functions
+"""
+
+
 def update_app1():
+    """
+    Updates App 1
+    """
     fig = go.Figure()
     final_list = ['2015', '2016', '2017', '2018', '2019']
     dims = [5, 6, 7, 8, 8]
@@ -53,11 +61,17 @@ def update_app1():
 
 
 def update_app2():
+    """
+    Updates App2
+    """
     return create_slider_scatter(['2015', '2016', '2017', '2018', '2019'], 'Points Per Possession vs Possessions',
                                  'PPP', 'Possessions')
 
 
 def update_app3(year):
+    """
+    Updates App3
+    """
     category_names = ["Iso", "Tra", "PRB", "PRR", "Pos", "Spo", "Han", "Cut", "Off", "OffR", "Misc"]
     dims = {"2015": 5, "2016": 6, "2017": 7, "2018": 8, "2019": 8}
     print(year)
@@ -106,6 +120,9 @@ def update_app3(year):
 
 
 def update_app4():
+    """
+    Updates App 4
+    """
     return plot_most_effi_figure("data/data_cleaned/poss_ppp_data")
 
 def update_app5(year,name):
@@ -115,10 +132,16 @@ def update_app5(year,name):
     return df5.to_dict('row')
 
 def update_app6(year, name):
+    """
+    Updates App 6
+    """
     return draw_pie_chart(name, int(year))
 
 
 def update_photo6(name):
+    """
+    Updates image
+    """
     name = name.lower()
     namelist=name.split()
     name = ''.join(name.split())

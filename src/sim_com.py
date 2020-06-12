@@ -6,37 +6,56 @@ from scipy.stats import entropy
 from numpy.linalg import norm
 
 def JSD(P, Q):
-    _P = P / norm(P, ord=1)
-    _Q = Q / norm(Q, ord=1)
-    _M = 0.5 * (_P + _Q)
-    return 0.5 * (entropy(_P, _M) + entropy(_Q, _M))
+	"""
+	More numberically stable Jensen Shannon formula
+	Inputs: P and Q, two vectors/lists
+	output: float
+
+	"""
+	_P = P / norm(P, ord=1)
+	_Q = Q / norm(Q, ord=1)
+	_M = 0.5 * (_P + _Q)
+	return 0.5 * (entropy(_P, _M) + entropy(_Q, _M))
 
 
 
 def jensen_shannon_distance(p, q):
-    """
-    method to compute the Jenson-Shannon Distance 
-    between two probability distributions
-    """
+	"""
+	method to compute the Jenson-Shannon Distance 
+	between two probability distributions
+	"""
 
-    # convert the vectors into numpy arrays in case that they aren'
-
-
-
-    divergence = JSD(p,q)
+	# convert the vectors into numpy arrays in case that they aren'
 
 
-    # compute Jensen Shannon Divergence
-    #divergence = (scipy.stats.entropy(p, m) + scipy.stats.entropy(q, m)) / 2
 
-    # compute the Jensen Shannon Distance
-    distance = np.sqrt(divergence)
-    return distance
+	divergence = JSD(p,q)
+
+
+	# compute Jensen Shannon Divergence
+	#divergence = (scipy.stats.entropy(p, m) + scipy.stats.entropy(q, m)) / 2
+
+	# compute the Jensen Shannon Distance
+	distance = np.sqrt(divergence)
+	return distance
 
 
 
 
 def sim_com(df1, df2, team, num_poss = 0):
+	"""
+	Takes in the two required dataframes, team numbers and a possession limit and outputs a table/dataframe of the players sorted by compatibility
+	to the given team
+	Input: df1,df2,team, num_poss (DF, DF, Str, Float)
+	Output: DF
+	"""
+
+	assert isinstance(num_poss, float) or isinstance(num_poss, int)
+	assert num_poss >= 0
+	assert isinstance(df1, pd.DataFrame) and isinstance(df2, pd.DataFrame)
+
+
+
 	df2 = df2[df2['TEAM_NAME'] == team]
 
 	df_temp = df1[df1["TEAM_NAME"] != team]
