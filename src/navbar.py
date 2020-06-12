@@ -31,3 +31,4 @@ def Navbar():
           sticky="top",
         )
      return navbar
+
