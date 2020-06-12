@@ -6,6 +6,12 @@ from src.effi import plot_most_effi_figure
 import os
 from src.sim_com import *
 from appUpdate.get_img_all import get_img
+import matplotlib.pyplot as plt
+
+
+"""
+Updates each of the Application functions
+"""
 
 
 """
