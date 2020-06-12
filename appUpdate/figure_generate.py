@@ -14,6 +14,11 @@ Updates each of the Application functions
 """
 
 
+"""
+Updates each of the Application functions
+"""
+
+
 def update_app1():
     """
     Updates App 1
