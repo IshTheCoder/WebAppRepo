@@ -1,0 +1,1296 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Group 2 &#8212; NBA Synergy Playtype Analysis 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to ECE 229 Group 2 project!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<p><img alt="Bild1" src="_images/stats.png" /></p>
+<div class="section" id="Group-2">
+<h1>Group 2<a class="headerlink" href="#Group-2" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Himanshu Gupta, Hao Zhao, Ishan Mehta, Sophy Lee, Suhrid Subramanian, Yi Yu</p></li>
+</ul>
+</div>
+<div class="section" id="Motivation">
+<h1>Motivation<a class="headerlink" href="#Motivation" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">• Over the years the traditional 5 team roles have started to blur and change due to the advent of 3-pt shooting and analytics</div>
+<div class="line">• Players score in a higher variety of ways now and being able to manufacture the most efficient source of buckets is of great importance</div>
+<div class="line">• Need a new evaluation of types of players to determine better and more balanced team compositions</div>
+</div>
+</div>
+<div class="section" id="Methodology">
+<h1>Methodology<a class="headerlink" href="#Methodology" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">• Analyze each player based on their components of different play types</div>
+<div class="line">• Use PCA to project the players into 3D for visualization</div>
+<div class="line">• Use K means method to determine the best way of categorizing the new types of players</div>
+<div class="line">• Use K means method to choose the best player for each team</div>
+</div>
+</div>
+<div class="section" id="Flow-Chart">
+<h1>Flow Chart<a class="headerlink" href="#Flow-Chart" title="Permalink to this headline">¶</a></h1>
+<p><img alt="Bild2" src="_images/FC.png" /></p>
+</div>
+<div class="section" id="Dataset">
+<h1>Dataset<a class="headerlink" href="#Dataset" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">• We scrape down the data from <a class="reference external" href="https://stats.nba.com">https://stats.nba.com</a></div>
+<div class="line">• Yearly game play data for all individual players in different play types</div>
+</div>
+</div>
+<div class="section" id="Dashboard-Introduction">
+<h1>Dashboard Introduction<a class="headerlink" href="#Dashboard-Introduction" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">• We have build a website on our AWS server as the dashboard based on Dash and Plotly</div>
+<div class="line">• Here is the link: <a class="reference external" href="http://54.218.118.253:5000">http://54.218.118.253:5000</a></div>
+<div class="line">• Different Pages shows different parts of the datasets, which is interactive</div>
+</div>
+</div>
+<div class="section" id="Page-1:-Best-Scorers-in-the-league">
+<h1>Page 1: Best Scorers in the league<a class="headerlink" href="#Page-1:-Best-Scorers-in-the-league" title="Permalink to this headline">¶</a></h1>
+<p><img alt="Bild3" src="_images/best.png" /></p>
+<p>This plot allows us to see how player volume scales with scoring efficiency. This is an important plot, as in order to understand extraordinary scoring, we must also understand scoring burdens. This allows an NBA front office to contextualize specific players performances against the rest of the league. Thus we can select players with scoring volume-efficiency balance a specific team needs.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+
+<span class="n">flist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;data/data_cleaned/poss_ppp_data/poss2015.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;data/data_cleaned/poss_ppp_data/poss2016.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;data/data_cleaned/poss_ppp_data/poss2017.csv&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;data/data_cleaned/poss_ppp_data/poss2018.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;data/data_cleaned/poss_ppp_data/poss2019.csv&#39;</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">scatter_plot_in</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function that outputs total poss, ppp, and name of each player through 3 lists</span>
+<span class="sd">    fname is expected directory path</span>
+<span class="sd">    fname must use data in ./poss_ppp_data</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">pt_abrv</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;iso&#39;</span><span class="p">,</span> <span class="s1">&#39;tr&#39;</span><span class="p">,</span> <span class="s1">&#39;prb&#39;</span><span class="p">,</span> <span class="s1">&#39;prr&#39;</span><span class="p">,</span> <span class="s1">&#39;pu&#39;</span><span class="p">,</span> <span class="s1">&#39;su&#39;</span><span class="p">,</span> <span class="s1">&#39;ho&#39;</span><span class="p">,</span> <span class="s1">&#39;cut&#39;</span><span class="p">,</span> <span class="s1">&#39;os&#39;</span><span class="p">,</span> <span class="s1">&#39;putback&#39;</span><span class="p">,</span> <span class="s1">&#39;misc&#39;</span><span class="p">]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="n">df_calc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pt_abrv</span><span class="p">:</span>
+        <span class="n">df_poss</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="s1">&#39;_poss&#39;</span><span class="p">]</span>
+        <span class="n">df_ppp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="s1">&#39;_ppp&#39;</span><span class="p">]</span>
+        <span class="n">df_points</span> <span class="o">=</span> <span class="n">df_ppp</span> <span class="o">*</span> <span class="n">df_poss</span>
+        <span class="n">df_calc</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="s1">&#39;_points&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_points</span>
+    <span class="n">ppp</span> <span class="o">=</span> <span class="n">df_calc</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_poss&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_poss&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">ppp</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;PLAYER_NAME&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">create_slider_scatter</span><span class="p">(</span><span class="n">fname_list</span><span class="p">,</span> <span class="n">title_graph</span><span class="p">,</span> <span class="n">yaxis_label</span><span class="p">,</span> <span class="n">x_axis_label</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get xy should take in the list of filenames for each year and output the x values, i.e. total possessions for the year vs total PPP.</span>
+<span class="sd">        PPP should be weighted according to the number of possessions right, like a players season PPP, is PPP_i * Poss_i, where i is the playtype</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">colorscale_curr</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;rgb(165,0,38)&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1111111111111111</span><span class="p">,</span> <span class="s2">&quot;rgb(215,48,39)&quot;</span><span class="p">],</span>
+                           <span class="p">[</span><span class="mf">0.2222222222222222</span><span class="p">,</span> <span class="s2">&quot;rgb(244,109,67)&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3333333333333333</span><span class="p">,</span> <span class="s2">&quot;rgb(253,174,97)&quot;</span><span class="p">],</span>
+                           <span class="p">[</span><span class="mf">0.4444444444444444</span><span class="p">,</span> <span class="s2">&quot;rgb(254,224,144)&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5555555555555556</span><span class="p">,</span> <span class="s2">&quot;rgb(224,243,248)&quot;</span><span class="p">],</span>
+                           <span class="p">[</span><span class="mf">0.6666666666666666</span><span class="p">,</span> <span class="s2">&quot;rgb(171,217,233)&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.7777777777777778</span><span class="p">,</span> <span class="s2">&quot;rgb(116,173,209)&quot;</span><span class="p">],</span>
+                           <span class="p">[</span><span class="mf">0.8888888888888888</span><span class="p">,</span> <span class="s2">&quot;rgb(69,117,180)&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;rgb(49,54,149)&quot;</span><span class="p">]]</span>
+        <span class="n">colorscale_curr</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+        <span class="c1"># just going to use global variable list of path strings;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">flist</span><span class="p">)):</span>
+            <span class="n">x_1</span><span class="p">,</span> <span class="n">y_1</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">scatter_plot_in</span><span class="p">(</span><span class="n">flist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+                <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_1</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">hoverinfo</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers&#39;</span><span class="p">,</span>
+                           <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">y_1</span><span class="p">,</span> <span class="n">colorscale</span><span class="o">=</span><span class="n">colorscale_curr</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+                                       <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;DarkSlateGrey&#39;</span><span class="p">)),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                           <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Points Per Possession vs Possessions &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                           <span class="p">))</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">steps</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">data</span><span class="p">)):</span>
+            <span class="n">step</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s2">&quot;restyle&quot;</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;visible&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">data</span><span class="p">)],</span>
+                <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Year &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2015</span><span class="p">)</span>
+
+            <span class="p">)</span>
+            <span class="n">step</span><span class="p">[</span><span class="s2">&quot;args&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Toggle i&#39;th trace to &quot;visible&quot;</span>
+            <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+
+        <span class="n">sliders</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span>
+            <span class="n">active</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+            <span class="n">currentvalue</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;prefix&quot;</span><span class="p">:</span> <span class="s2">&quot;Year: &quot;</span><span class="p">},</span>
+            <span class="n">pad</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+            <span class="n">steps</span><span class="o">=</span><span class="n">steps</span>
+        <span class="p">)]</span>
+        <span class="n">start_index</span> <span class="o">=</span> <span class="mi">2015</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">sliders</span><span class="o">=</span><span class="n">sliders</span><span class="p">,</span>
+            <span class="c1"># title = &quot;9 Cluster classification of players based on Scoring Styles&quot;</span>
+            <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">title_graph</span><span class="p">},</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="n">x_axis_label</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="n">yaxis_label</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Page-2:-Efficieny-of-PlayTypes">
+<h1>Page 2: Efficieny of PlayTypes<a class="headerlink" href="#Page-2:-Efficieny-of-PlayTypes" title="Permalink to this headline">¶</a></h1>
+<p><img alt="Bild4" src="_images/Effi.png" /></p>
+<p>Here we plot the play-type efficiency for each of the years, this will allow teams to understand, what the efficiency is for each playtype on a league-wide basis. Teams are encouraged to construct plays that generate the highest yield. For fanatics, this can provide a rationale behind changing team strategy over the years.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">playtypes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cut&#39;</span><span class="p">,</span> <span class="s1">&#39;ho&#39;</span><span class="p">,</span> <span class="s1">&#39;iso&#39;</span><span class="p">,</span> <span class="s1">&#39;misc&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;os&#39;</span><span class="p">,</span> <span class="s1">&#39;prb&#39;</span><span class="p">,</span> <span class="s1">&#39;prr&#39;</span><span class="p">,</span> <span class="s1">&#39;pu&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;putback&#39;</span><span class="p">,</span> <span class="s1">&#39;su&#39;</span><span class="p">,</span> <span class="s1">&#39;tr&#39;</span><span class="p">]</span>
+
+<span class="n">playtype_shortcut</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;iso&#39;</span><span class="p">:</span> <span class="s1">&#39;Isolation&#39;</span><span class="p">,</span> <span class="s1">&#39;tr&#39;</span><span class="p">:</span> <span class="s1">&#39;Transition&#39;</span><span class="p">,</span> <span class="s1">&#39;prb&#39;</span><span class="p">:</span> <span class="s1">&#39;PRBallHandler&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;prr&#39;</span><span class="p">:</span> <span class="s1">&#39;PRRollMan&#39;</span><span class="p">,</span> <span class="s1">&#39;pu&#39;</span><span class="p">:</span> <span class="s1">&#39;Postup&#39;</span><span class="p">,</span> <span class="s1">&#39;su&#39;</span><span class="p">:</span> <span class="s1">&#39;Spotup&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;ho&#39;</span><span class="p">:</span> <span class="s1">&#39;Handoff&#39;</span><span class="p">,</span> <span class="s1">&#39;cut&#39;</span><span class="p">:</span> <span class="s1">&#39;Cut&#39;</span><span class="p">,</span> <span class="s1">&#39;os&#39;</span><span class="p">:</span> <span class="s1">&#39;Offscreen&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;putback&#39;</span><span class="p">:</span> <span class="s1">&#39;OffRebound&#39;</span><span class="p">,</span> <span class="s1">&#39;misc&#39;</span><span class="p">:</span> <span class="s1">&#39;Misc&#39;</span><span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">fig_to_uri</span><span class="p">(</span><span class="n">in_fig</span><span class="p">,</span> <span class="n">close_all</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">save_args</span><span class="p">):</span>
+    <span class="c1"># type: (plt.Figure) -&gt; str</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save a figure as a URI</span>
+<span class="sd">    :param in_fig:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out_img</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
+    <span class="n">in_fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">out_img</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">save_args</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">close_all</span><span class="p">:</span>
+        <span class="n">in_fig</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+    <span class="n">out_img</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># rewind file</span>
+    <span class="n">encoded</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">out_img</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;data:image/png;base64,</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_plot_data</span><span class="p">(</span><span class="n">aggr_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    param: aggr_data, str, where the yearly aggregated data is</span>
+<span class="sd">    param: outdir, str, folder to store output figures</span>
+<span class="sd">    return: plot_data, dictionary = {year: data list of the year}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">aggr_data</span><span class="p">,</span> <span class="s2">&quot;Input directory is invalid.&quot;</span>
+
+    <span class="n">files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">aggr_data</span><span class="p">)</span>
+    <span class="n">plot_data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">aggr_data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">year</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">f</span> <span class="k">if</span> <span class="s1">&#39;0&#39;</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="s1">&#39;9&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">playtypes</span><span class="p">:</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s2">&quot;_pts&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s2">&quot;_ppp&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s2">&quot;_poss&quot;</span><span class="p">]</span>
+        <span class="n">df_sum</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">playtypes</span><span class="p">:</span>
+            <span class="n">plot_data</span><span class="p">[</span><span class="n">year</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">df_sum</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s2">&quot;_pts&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_sum</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s2">&quot;_poss&quot;</span><span class="p">]</span>
+            <span class="p">)</span>
+    <span class="k">return</span> <span class="n">plot_data</span>
+
+<span class="k">def</span> <span class="nf">plot_most_effi_figure</span><span class="p">(</span><span class="n">aggr_data</span><span class="p">,</span> <span class="n">outdir</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    param: aggr_data, str, where the yearly aggregated data is</span>
+<span class="sd">    param: outdir, str, folder to store output figures</span>
+<span class="sd">    return: save figures in the outdir</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">outdir</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">outdir</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">outdir</span><span class="p">)</span>
+
+    <span class="n">plot_data</span> <span class="o">=</span> <span class="n">get_plot_data</span><span class="p">(</span><span class="n">aggr_data</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">bar_width</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">,</span> <span class="n">x</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;#823935&quot;</span><span class="p">,</span> <span class="s2">&quot;#89BEB2&quot;</span><span class="p">,</span> <span class="s2">&quot;#C9BA83&quot;</span><span class="p">,</span> <span class="s2">&quot;#DED38C&quot;</span><span class="p">,</span> <span class="s2">&quot;#DE9C53&quot;</span><span class="p">]</span>
+
+    <span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">2020</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+            <span class="n">start</span><span class="p">,</span>
+            <span class="n">plot_data</span><span class="p">[</span><span class="n">year</span><span class="p">],</span>
+            <span class="n">bar_width</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">year</span> <span class="o">-</span> <span class="mi">2015</span><span class="p">],</span>
+            <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">start</span> <span class="o">+=</span> <span class="n">bar_width</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper center&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span>
+        <span class="n">x</span> <span class="o">-</span> <span class="mf">5.5</span> <span class="o">*</span> <span class="n">bar_width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="n">playtype_shortcut</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">playtypes</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Efficiency / PPP&quot;</span><span class="p">)</span>
+    <span class="c1"># plotly_fig = mpl_to_plotly(fig)</span>
+    <span class="n">uri</span> <span class="o">=</span> <span class="n">fig_to_uri</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">uri</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Page-3:-Behaviour-of-typical-players">
+<h1>Page 3: Behaviour of typical players<a class="headerlink" href="#Page-3:-Behaviour-of-typical-players" title="Permalink to this headline">¶</a></h1>
+<p><img alt="Bild5" src="_images/kmeans.png" /></p>
+<p>This is a K-means clustering of player roles over the last 5 years, based on play-style. Using the distribution and efficiency of play-style, we have managed to redefine player roles over the period of the analytics shift in basketball. We look at a PCA of the play-type data across the 5 years, and attempt the best K-means clustering over the last 5 years individually over a fixed axis. An NBA front office could use this chart to gain a better understanding of the NBA role landscape and look at
+how player roles have changed over the past 5 years. This can be seen in how the points on the graph spread out over the years, allowing for additional clusters. An additional feature to this, is exploring how certain players have changed their roles over their years in the league, through their movement on the fixed axis.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">silhouette_score</span>
+
+<span class="k">def</span> <span class="nf">pca_processing</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">n_comp</span> <span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to decrease the dimension of the players based on their POSS_PCT</span>
+<span class="sd">    :param fname: the path of the pca_table file</span>
+<span class="sd">    :param n_comp: the number of main components we want to use</span>
+<span class="sd">    :return: data after pca with dimension n*n_comp; player names, the pca dimensions correspond to a pca fit across all years</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">df_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">frame_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2015_pca_table.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;2016_pca_table.csv&#39;</span><span class="p">,</span><span class="s1">&#39;2017_pca_table.csv&#39;</span><span class="p">,</span><span class="s1">&#39;2018_pca_table.csv&#39;</span><span class="p">,</span><span class="s1">&#39;2019_pca_table.csv&#39;</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">frame_list</span><span class="p">:</span>
+        <span class="n">df_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fname</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="n">each</span><span class="p">)</span>
+        <span class="n">df_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_new</span><span class="p">)</span>
+    <span class="n">df_concat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df_list</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="n">kept_cols</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;freq&quot;</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="n">kept_cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;PLAYER_NAME&quot;</span><span class="p">)</span>
+    <span class="n">kept_cols</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">kept_cols</span><span class="p">]</span>
+    <span class="n">df_concat</span> <span class="o">=</span> <span class="n">df_concat</span><span class="p">[</span><span class="n">kept_cols</span><span class="p">]</span>
+
+    <span class="n">player_name</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;PLAYER_NAME&quot;</span><span class="p">]</span>
+
+    <span class="n">data_org</span> <span class="o">=</span> <span class="n">df_concat</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:]</span>
+    <span class="n">data_test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:]</span>
+
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_comp</span><span class="p">)</span>
+    <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_org</span><span class="p">)</span>
+    <span class="n">data_pca</span> <span class="o">=</span> <span class="n">data_test</span> <span class="o">@</span> <span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_pca</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">player_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data_pca</span><span class="p">,</span> <span class="n">player_name</span>
+
+<span class="k">def</span> <span class="nf">k_means</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">cluster_num</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to cluster the data into cluster_num groups and visualize them in a 3D space</span>
+<span class="sd">    :param fname: the path of the pca_table file</span>
+<span class="sd">    :param dim: the number of dimensions we want to use</span>
+<span class="sd">    :param cluster_num: the number of clusters we want to cluster them</span>
+<span class="sd">    :return: NONE</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">pca_processing</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">k_means</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">cluster_num</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">k_means</span><span class="o">.</span><span class="n">labels_</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">k_means</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">names</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">distance</span>
+
+<span class="k">def</span> <span class="nf">get_silscores</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">best</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">final_clus</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">cluster_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">):</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">pca_processing</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">k_means</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">cluster_num</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">k_means</span><span class="o">.</span><span class="n">labels_</span>
+        <span class="n">silhouette_avg</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">silhouette_avg</span> <span class="o">&gt;=</span> <span class="n">best</span><span class="p">:</span>
+            <span class="n">best</span> <span class="o">=</span> <span class="n">silhouette_avg</span>
+            <span class="n">final_clus</span><span class="o">=</span> <span class="n">cluster_num</span>
+    <span class="k">return</span> <span class="n">best</span><span class="p">,</span> <span class="n">final_clus</span>
+
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Page-4:-Top-5-players-per-cluster">
+<h1>Page 4: Top 5 players per cluster<a class="headerlink" href="#Page-4:-Top-5-players-per-cluster" title="Permalink to this headline">¶</a></h1>
+<p><img alt="Bild6" src="_images/players.png" /></p>
+<p>The graph here shows the playtype distributions of the 5 players that best match each of the archetypes created by K-Means clustering. This allows teams a look into the type of contributions they can expect from each archetype, by using existing players as examples of the playstyles. This is a useful tool for a front office that supplements the previous chart, since while it is difficult to name the clusters, we may still view the style of play embodied by the clusters, and choose the players
+from the clusters that best serve the current needs of a team</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">calculate_top5</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to find the top5 players who are the most closest to the k-means&#39;s cluster center</span>
+<span class="sd">    :param distance: Distance of each player to the clusters</span>
+<span class="sd">    :param names: names of each player</span>
+<span class="sd">    :return: top5 names of each clusters</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">dim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">distance</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">dim</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">top5_name</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dim</span><span class="p">):</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">distance</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span>
+        <span class="n">min_5</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[:</span><span class="mi">5</span><span class="p">]</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">min_5</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">min_5</span><span class="p">:</span>
+            <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+        <span class="n">top5_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">top5_name</span>
+
+<span class="k">def</span> <span class="nf">top5_img</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">cluster_num</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    :param distance: distance of player to kmeans center</span>
+<span class="sd">    :param names: player names</span>
+<span class="sd">    :param year: year</span>
+<span class="sd">    :return: dictionary of player names and their play type</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">assert</span> <span class="mi">2015</span> <span class="o">&lt;=</span> <span class="n">year</span> <span class="o">&lt;=</span> <span class="mi">2019</span>
+    <span class="n">top5names</span> <span class="o">=</span> <span class="n">calculate_top5</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;data/data_cleaned/pca_data/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_pca_table.csv&quot;</span>
+    <span class="k">if</span> <span class="n">test</span><span class="p">:</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;../data/data_cleaned/pca_data/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_pca_table.csv&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">data_per_player</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">top5names</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">top5names</span><span class="p">[</span><span class="n">i</span><span class="p">])):</span>
+            <span class="n">new_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;PLAYER_NAME&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">top5names</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">new_df</span><span class="p">[</span>
+                <span class="p">[</span><span class="s2">&quot;iso_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;tr_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;prb_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;prr_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;pu_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;su_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;ho_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;cut_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;os_freq&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;putback_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;misc_freq&quot;</span><span class="p">]]</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">data_per_player</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">data_per_player</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
+    <span class="n">data_per_player</span> <span class="o">=</span> <span class="n">data_per_player</span><span class="p">[</span><span class="mi">1</span><span class="p">:,:]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cluster_num</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">top5names</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">data_per_player</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="n">j</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Page-5:-Frequency-of-PlayTypes">
+<h1>Page 5: Frequency of PlayTypes<a class="headerlink" href="#Page-5:-Frequency-of-PlayTypes" title="Permalink to this headline">¶</a></h1>
+<p><img alt="Bild7" src="_images/freq.png" /></p>
+<p>Here we can see the selected player’s playstyle for the given year. We can see how over time these playstyles may change due to trends in the league. Some prominent examples would be brook Lopez’s transformation from a traditional back to the basket center to a sport-up shooter.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">pct</span><span class="p">,</span> <span class="n">allvals</span><span class="p">):</span>
+    <span class="n">absolute</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pct</span><span class="o">/</span><span class="mf">100.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">allvals</span><span class="p">))</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{:.1f}</span><span class="s2">%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pct</span><span class="p">,</span> <span class="n">absolute</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">fig_to_uri</span><span class="p">(</span><span class="n">in_fig</span><span class="p">,</span> <span class="n">close_all</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">save_args</span><span class="p">):</span>
+    <span class="c1"># type: (plt.Figure) -&gt; str</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save a figure as a URI</span>
+<span class="sd">    :param in_fig:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out_img</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
+    <span class="n">in_fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">out_img</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">save_args</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">close_all</span><span class="p">:</span>
+        <span class="n">in_fig</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+    <span class="n">out_img</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># rewind file</span>
+    <span class="n">encoded</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">out_img</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;data:image/png;base64,</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">draw_pie_chart</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to draw the pie chart of players of different PlayType.</span>
+<span class="sd">    Just input the player name and the year you want to know.</span>
+<span class="sd">    :param name: Player name, string</span>
+<span class="sd">    :param year: year</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="mi">2015</span> <span class="o">&lt;=</span> <span class="n">year</span> <span class="o">&lt;=</span> <span class="mi">2019</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;data/data_cleaned/pca_data/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_pca_table.csv&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">new_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;PLAYER_NAME&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">name</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">new_df</span><span class="p">[[</span><span class="s2">&quot;iso_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;tr_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;prb_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;prr_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;pu_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;su_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;ho_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;cut_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;os_freq&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;putback_freq&quot;</span><span class="p">,</span> <span class="s2">&quot;misc_freq&quot;</span><span class="p">]]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;equal&quot;</span><span class="p">))</span>
+    <span class="n">recipe</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Isolation&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;Transition&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;PRBallHandler&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;PRRollMan&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;Postup&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;Spotup&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;Handoff&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;Cut&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;Offscreen&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;OffRebound&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;Misc&quot;</span><span class="p">]</span>
+    <span class="n">ingredients</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">recipe</span><span class="p">]</span>
+    <span class="n">wedges</span><span class="p">,</span> <span class="n">texts</span><span class="p">,</span> <span class="n">autotexts</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">autopct</span><span class="o">=</span><span class="k">lambda</span> <span class="n">pct</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">pct</span><span class="p">,</span> <span class="n">data</span><span class="p">),</span>
+                                      <span class="n">textprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">),</span> <span class="n">shadow</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                      <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cornflowerblue&quot;</span><span class="p">,</span> <span class="s2">&quot;mediumseagreen&quot;</span><span class="p">,</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="s2">&quot;salmon&quot;</span><span class="p">,</span> <span class="s2">&quot;burlywood&quot;</span><span class="p">,</span> <span class="s2">&quot;plum&quot;</span><span class="p">,</span>
+                                              <span class="s2">&quot;peru&quot;</span><span class="p">,</span> <span class="s2">&quot;sandybrown&quot;</span><span class="p">,</span> <span class="s2">&quot;teal&quot;</span><span class="p">,</span> <span class="s2">&quot;darkkhaki&quot;</span><span class="p">,</span> <span class="s2">&quot;pink&quot;</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">wedges</span><span class="p">,</span> <span class="n">ingredients</span><span class="p">,</span>
+              <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Freq of PlayTypes&quot;</span><span class="p">,</span>
+              <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center left&quot;</span><span class="p">,</span>
+              <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">autotexts</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;  &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">))</span>
+
+    <span class="n">our_url</span><span class="o">=</span> <span class="n">fig_to_uri</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">our_url</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Page-6:-Best-fit-player-targets">
+<h1>Page 6: Best fit player targets<a class="headerlink" href="#Page-6:-Best-fit-player-targets" title="Permalink to this headline">¶</a></h1>
+<p><img alt="Bild8" src="_images/fit.png" /></p>
+<p>We have used playtype data and Jensen Shannon divergence to find the best fit players for each team. As a team, you would prefer to target players who are best suited to your current playstyle, or would add a new dimension to your offensive capabilities. The similar players are the ones that would best slot into the teams current distribution with the most synergy. The complement score gives you players that are proficient in the areas that the selected team is weakest in.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">entropy</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span>
+
+<span class="k">def</span> <span class="nf">JSD</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">Q</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    More numberically stable Jensen Shannon formula</span>
+<span class="sd">    Inputs: P and Q, two vectors/lists</span>
+<span class="sd">    output: float</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_P</span> <span class="o">=</span> <span class="n">P</span> <span class="o">/</span> <span class="n">norm</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">_Q</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">/</span> <span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">_M</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">_P</span> <span class="o">+</span> <span class="n">_Q</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">_P</span><span class="p">,</span> <span class="n">_M</span><span class="p">)</span> <span class="o">+</span> <span class="n">entropy</span><span class="p">(</span><span class="n">_Q</span><span class="p">,</span> <span class="n">_M</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">jensen_shannon_distance</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    method to compute the Jenson-Shannon Distance</span>
+<span class="sd">    between two probability distributions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># convert the vectors into numpy arrays in case that they aren&#39;</span>
+
+    <span class="n">divergence</span> <span class="o">=</span> <span class="n">JSD</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">)</span>
+
+    <span class="c1"># compute Jensen Shannon Divergence</span>
+    <span class="c1">#divergence = (scipy.stats.entropy(p, m) + scipy.stats.entropy(q, m)) / 2</span>
+
+    <span class="c1"># compute the Jensen Shannon Distance</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">divergence</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">distance</span>
+
+<span class="k">def</span> <span class="nf">sim_com</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">team</span><span class="p">,</span> <span class="n">num_poss</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes in the two required dataframes, team numbers and a possession limit and outputs a table/dataframe of the players sorted by compatibility</span>
+<span class="sd">    to the given team</span>
+<span class="sd">    Input: df1,df2,team, num_poss (DF, DF, Str, Float)</span>
+<span class="sd">    Output: DF</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">num_poss</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">num_poss</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">num_poss</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span>
+
+    <span class="n">df2</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;TEAM_NAME&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">team</span><span class="p">]</span>
+
+    <span class="n">df_temp</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[</span><span class="n">df1</span><span class="p">[</span><span class="s2">&quot;TEAM_NAME&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">team</span><span class="p">]</span>
+    <span class="n">pt_abrv</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;iso_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;tr_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;prb_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;prr_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;pu_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;su_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;ho_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;cut_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;os_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;putback_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;misc_freq&#39;</span><span class="p">]</span>
+
+    <span class="n">q</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="n">pt_abrv</span><span class="p">]</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">diff_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_temp</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">pt_abrv</span><span class="p">])</span>
+        <span class="n">diff_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">jensen_shannon_distance</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">),</span> <span class="mi">4</span><span class="p">))</span>
+
+    <span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;Similarity Score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff_list</span>
+    <span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;Complement Score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_temp</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Similarity Score&#39;</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">df_temp</span> <span class="o">=</span> <span class="n">df_temp</span><span class="p">[</span><span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;total_poss&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">num_poss</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">df_temp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Navigation-Bar-Dash-Object">
+<h1>Navigation Bar Dash Object<a class="headerlink" href="#Navigation-Bar-Dash-Object" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">dash_html_components</span> <span class="k">as</span> <span class="nn">html</span>
+<span class="k">def</span> <span class="nf">Navbar</span><span class="p">():</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  Returns navbard dash object</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="n">navbar</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">NavbarSimple</span><span class="p">(</span>
+         <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="s1">&#39;Home&#39;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="s1">&#39;Page1&#39;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;/page2&#39;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="s1">&#39;Page2&#39;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;/page4&#39;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="s2">&quot;Page3&quot;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;/page1&quot;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="s2">&quot;Page4&quot;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;/page3&quot;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="s2">&quot;Page5&quot;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;/page6&quot;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="s2">&quot;Page6&quot;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;/page5&quot;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">DropdownMenu</span><span class="p">(</span>
+               <span class="n">nav</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+               <span class="n">in_navbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+               <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Menu&quot;</span><span class="p">,</span>
+               <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                  <span class="n">dbc</span><span class="o">.</span><span class="n">DropdownMenuItem</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="s1">&#39;Page1&#39;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;/page2&#39;</span><span class="p">)),</span>
+                  <span class="n">dbc</span><span class="o">.</span><span class="n">DropdownMenuItem</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="s1">&#39;Page2&#39;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;/page4&#39;</span><span class="p">)),</span>
+                  <span class="c1"># dbc.DropdownMenuItem(divider=True),</span>
+                  <span class="n">dbc</span><span class="o">.</span><span class="n">DropdownMenuItem</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="s1">&#39;Page3&#39;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;/page1&#39;</span><span class="p">)),</span>
+                  <span class="n">dbc</span><span class="o">.</span><span class="n">DropdownMenuItem</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="s1">&#39;Page4&#39;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;/page3&#39;</span><span class="p">)),</span>
+                  <span class="n">dbc</span><span class="o">.</span><span class="n">DropdownMenuItem</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="s1">&#39;Page5&#39;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;/page6&#39;</span><span class="p">)),</span>
+                  <span class="n">dbc</span><span class="o">.</span><span class="n">DropdownMenuItem</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="s1">&#39;Page6&#39;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;/page5&#39;</span><span class="p">)),</span>
+                        <span class="p">],</span>
+                    <span class="p">),</span>
+                  <span class="p">],</span>
+          <span class="c1"># dbc.NavbarBrand</span>
+        <span class="n">brand</span><span class="o">=</span><span class="s2">&quot;NBA&quot;</span><span class="p">,</span>
+        <span class="n">brand_href</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="p">,</span>
+        <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span>
+      <span class="p">)</span>
+  <span class="k">return</span> <span class="n">navbar</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Dash-Implementation">
+<h1>Dash Implementation<a class="headerlink" href="#Dash-Implementation" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_html_components</span> <span class="k">as</span> <span class="nn">html</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">src.navbar</span> <span class="kn">import</span> <span class="n">Navbar</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">flask</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">from</span> <span class="nn">dash_table</span> <span class="kn">import</span> <span class="n">DataTable</span>
+<span class="kn">from</span> <span class="nn">appUpdate.figure_generate</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span> <span class="nf">get_options</span><span class="p">(</span><span class="n">list_stocks</span><span class="p">):</span>
+    <span class="n">dict_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_stocks</span><span class="p">:</span>
+        <span class="n">dict_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">dict_list</span>
+
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;agg&#39;</span><span class="p">)</span>
+
+<span class="c1"># for page6</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;data/data_cleaned/pca_data/2015_pca_table.csv&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">names</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;PLAYER_NAME&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;PLAYER_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;TEAM_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;total_poss&#39;</span><span class="p">,</span> <span class="s1">&#39;Similarity Score&#39;</span><span class="p">,</span> <span class="s1">&#39;Complement Score&#39;</span><span class="p">]</span>
+<span class="n">nameList</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;PLAYER_NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;Player Name&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;TEAM_NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;Team Name&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;total_poss&#39;</span><span class="p">:</span> <span class="s1">&#39;Total Poss&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Similarity Score&#39;</span><span class="p">:</span> <span class="s1">&#39;Similarity Score&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Complement Score&#39;</span><span class="p">:</span> <span class="s1">&#39;Complement Score&#39;</span><span class="p">}</span>
+
+<span class="n">app_flask</span> <span class="o">=</span> <span class="n">flask</span><span class="o">.</span><span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">homepage</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">UNITED</span><span class="p">],</span> <span class="n">server</span><span class="o">=</span><span class="n">app_flask</span><span class="p">,</span> <span class="n">url_base_pathname</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">UNITED</span><span class="p">],</span> <span class="n">server</span><span class="o">=</span><span class="n">app_flask</span><span class="p">,</span> <span class="n">url_base_pathname</span><span class="o">=</span><span class="s1">&#39;/page1/&#39;</span><span class="p">)</span>
+
+<span class="n">app2</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">UNITED</span><span class="p">],</span> <span class="n">server</span><span class="o">=</span><span class="n">app_flask</span><span class="p">,</span> <span class="n">url_base_pathname</span><span class="o">=</span><span class="s1">&#39;/page2/&#39;</span><span class="p">)</span>
+
+<span class="n">app3</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">UNITED</span><span class="p">],</span> <span class="n">server</span><span class="o">=</span><span class="n">app_flask</span><span class="p">,</span> <span class="n">url_base_pathname</span><span class="o">=</span><span class="s1">&#39;/page3/&#39;</span><span class="p">)</span>
+
+<span class="n">app4</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">UNITED</span><span class="p">],</span> <span class="n">server</span><span class="o">=</span><span class="n">app_flask</span><span class="p">,</span> <span class="n">url_base_pathname</span><span class="o">=</span><span class="s1">&#39;/page4/&#39;</span><span class="p">)</span>
+
+<span class="n">app5</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">UNITED</span><span class="p">],</span> <span class="n">server</span><span class="o">=</span><span class="n">app_flask</span><span class="p">,</span> <span class="n">url_base_pathname</span><span class="o">=</span><span class="s1">&#39;/page5/&#39;</span><span class="p">)</span>
+
+<span class="n">app6</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">UNITED</span><span class="p">],</span> <span class="n">server</span><span class="o">=</span><span class="n">app_flask</span><span class="p">,</span> <span class="n">url_base_pathname</span><span class="o">=</span><span class="s1">&#39;/page6/&#39;</span><span class="p">)</span>
+
+
+<span class="n">nav</span> <span class="o">=</span> <span class="n">Navbar</span><span class="p">()</span>
+
+<span class="n">homepage</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span><span class="n">nav</span><span class="p">]),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span>  <span class="c1"># Define the row element</span>
+                 <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                     <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;four columns div-user-controls bg-black&#39;</span><span class="p">,</span>
+                                  <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Description&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;app1text&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;This Web-App serves as a Sports Intelligence platform for NBA teams. Our target users are NBA front-offices/analytics teams. NBA front offices would wish to explore different tools that would allow them to make informed decisions on NBA player roles and paradigms, in order to select the best-fitting players for their teams.&#39;</span><span class="p">)</span>
+                              <span class="p">]</span>
+                              <span class="p">),</span>  <span class="c1"># Define the left element</span>
+                     <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;eight columns div-for-charts bg-black&#39;</span><span class="p">,</span>
+                              <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;display&quot;</span><span class="p">:</span> <span class="s2">&quot;flex&quot;</span><span class="p">,</span>
+                                    <span class="s1">&#39;align-items&#39;</span><span class="p">:</span><span class="s1">&#39;center&#39;</span><span class="p">},</span>
+                              <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">Img</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;Homepage2&#39;</span><span class="p">,</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;assets/home_p2.png&#39;</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;40%&#39;</span><span class="p">,</span>
+                                           <span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Group 2:&#39;</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="p">{</span>
+                                      <span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;white&#39;</span>
+                                  <span class="p">}),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H3</span><span class="p">(</span><span class="s1">&#39;Himanshu Gupta&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H3</span><span class="p">(</span><span class="s1">&#39;Hao zhao&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H3</span><span class="p">(</span><span class="s1">&#39;Ishan Mehta&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H3</span><span class="p">(</span><span class="s1">&#39;Sophy Lee&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H3</span><span class="p">(</span><span class="s1">&#39;Suhrid Subramaniam&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H3</span><span class="p">(</span><span class="s1">&#39;Yi Yu&#39;</span><span class="p">),</span>
+                              <span class="p">])</span>  <span class="c1"># Define the right element</span>
+                 <span class="p">])</span>
+    <span class="p">])</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span><span class="n">nav</span><span class="p">]),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span>  <span class="c1"># Define the row element</span>
+                 <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                     <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;four columns div-user-controls&#39;</span><span class="p">,</span>
+                              <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Description&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;app1text&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;This is a K-means clustering of player roles over the last 5 years, based on play-style. Using the distribution and efficiency of play-style, we have managed to redefine player roles over the period of the analytics shift in basketball. We look at a PCA of the play-type data across the 5 years, and attempt the best K-means clustering over the last 5 years individually over a fixed axis. An NBA front office could use this chart to gain a better understanding of the NBA role landscape and look at how player roles have changed over the past 5 years. This can be seen in how the points on the graph spread out over the years, allowing for additional clusters. An additional feature to this, is exploring how certain players have changed their roles over their years in the league, through their movement on the fixed axis.&#39;</span><span class="p">)</span>
+                              <span class="p">]</span>
+                              <span class="p">),</span>  <span class="c1"># Define the left element</span>
+                     <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;eight columns div-for-charts bg-grey&#39;</span><span class="p">,</span>
+                              <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;K-Means clustering for new-era player roles&#39;</span><span class="p">),</span>
+                                  <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+                                      <span class="n">figure</span><span class="o">=</span><span class="n">update_app1</span><span class="p">(),</span> <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;displayModeBar&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+                                  <span class="p">)</span>
+                              <span class="p">])</span>  <span class="c1"># Define the right element</span>
+                 <span class="p">])</span>
+    <span class="p">])</span>
+
+<span class="n">app2</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span><span class="n">nav</span><span class="p">]),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span>  <span class="c1"># Define the row element</span>
+                 <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                     <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;four columns div-user-controls&#39;</span><span class="p">,</span>
+                              <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Description&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;app2text&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;This plot allows us to see how player volume scales with scoring efficiency. This is an important plot, as in order to understand extraordinary scoring, we must also understand scoring burdens. This allows an NBA front office to contextualize specific players performances against the rest of the league. Thus we can select players with scoring volume-efficiency balance a specific team needs.&#39;</span><span class="p">)</span>
+                              <span class="p">]</span>
+                              <span class="p">),</span>  <span class="c1"># Define the left element</span>
+                     <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;eight columns div-for-charts bg-grey&#39;</span><span class="p">,</span>
+                              <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Scoring Efficiency vs Volume&#39;</span><span class="p">),</span>
+                                  <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+                                      <span class="n">figure</span><span class="o">=</span><span class="n">update_app2</span><span class="p">(),</span> <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;displayModeBar&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+                                  <span class="p">)</span>
+                              <span class="p">])</span>  <span class="c1"># Define the right element</span>
+                 <span class="p">])</span>
+    <span class="p">])</span>
+
+<span class="n">app3</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span><span class="n">nav</span><span class="p">]),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span>  <span class="c1"># Define the row element</span>
+                 <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                     <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;four columns div-user-controls&#39;</span><span class="p">,</span>
+                              <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Years options&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;div-for-dropdown&#39;</span><span class="p">,</span>
+                                           <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                               <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;years&#39;</span><span class="p">,</span>
+                                                            <span class="n">options</span><span class="o">=</span><span class="n">get_options</span><span class="p">(</span>
+                                                                <span class="p">[</span><span class="s1">&#39;2015&#39;</span><span class="p">,</span> <span class="s1">&#39;2016&#39;</span><span class="p">,</span> <span class="s1">&#39;2017&#39;</span><span class="p">,</span> <span class="s1">&#39;2018&#39;</span><span class="p">,</span> <span class="s1">&#39;2019&#39;</span><span class="p">]),</span>
+                                                            <span class="n">multi</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                                            <span class="n">value</span><span class="o">=</span><span class="s1">&#39;2015&#39;</span><span class="p">,</span>
+                                                            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;#1E1E1E&#39;</span><span class="p">},</span>
+                                                            <span class="n">className</span><span class="o">=</span><span class="s1">&#39;stockselector&#39;</span><span class="p">)</span>
+                                           <span class="p">],</span>
+                                           <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;#1E1E1E&#39;</span><span class="p">}),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Description&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;app3text&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;The graph here shows the playtype distributions of the 5 players that best match each of the archetypes created by K-Means clustering. This allows teams a look into the type of contributions they can expect from each archetype, by using existing players as examples of the playstyles. This is a useful tool for a front office that supplements the previous chart, since while it is difficult to name the clusters, we may still view the style of play embodied by the clusters, and choose the players from the clusters that best serve the current needs of a team&#39;</span><span class="p">)</span>
+                              <span class="p">]</span>
+                              <span class="p">),</span>  <span class="c1"># Define the left element</span>
+                     <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;eight columns div-for-charts bg-grey&#39;</span><span class="p">,</span>
+                              <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Top 5 players that personify each cluster archetype&#39;</span><span class="p">),</span>
+                                  <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+                                      <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;gapminder2&#39;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;displayModeBar&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+                                  <span class="p">)</span>
+                              <span class="p">])</span>  <span class="c1"># Define the right element</span>
+                 <span class="p">])</span>
+    <span class="p">])</span>
+
+<span class="n">app4</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span><span class="n">nav</span><span class="p">]),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span>  <span class="c1"># Define the row element</span>
+                 <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                     <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;four columns div-user-controls&#39;</span><span class="p">,</span>
+                              <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Description&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;app4text&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;Here we plot the play-type efficiency for each of the years, this will allow teams to understand, what the efficiency is for each playtype on a league-wide basis. Teams are encouraged to construct plays that generate the highest yield. For fanatics, this can provide a rationale behind changing team strategy over the years.&#39;</span><span class="p">)</span>
+                              <span class="p">]</span>
+                              <span class="p">),</span>  <span class="c1"># Define the left element</span>
+                     <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;eight columns div-for-charts bg-grey&#39;</span><span class="p">,</span>
+                              <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Playtype efficiency over the years&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">Img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">update_app4</span><span class="p">())</span>
+                              <span class="p">])</span>  <span class="c1"># Define the right element</span>
+                 <span class="p">])</span>
+    <span class="p">])</span>
+
+<span class="n">app5</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span><span class="n">nav</span><span class="p">]),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span>  <span class="c1"># Define the row element</span>
+                 <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                     <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;four columns div-user-controls&#39;</span><span class="p">,</span>
+                              <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Years options&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;div-for-dropdown&#39;</span><span class="p">,</span>
+                                           <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                               <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;years5&#39;</span><span class="p">,</span>
+                                                            <span class="n">options</span><span class="o">=</span><span class="n">get_options</span><span class="p">(</span>
+                                                                <span class="p">[</span><span class="s1">&#39;2015&#39;</span><span class="p">,</span> <span class="s1">&#39;2016&#39;</span><span class="p">,</span> <span class="s1">&#39;2017&#39;</span><span class="p">,</span> <span class="s1">&#39;2018&#39;</span><span class="p">,</span> <span class="s1">&#39;2019&#39;</span><span class="p">]),</span>
+                                                            <span class="n">multi</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                                            <span class="n">value</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                                                            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;#1E1E1E&#39;</span><span class="p">},</span>
+                                                            <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;please pick year&#39;</span><span class="p">,</span>
+                                                            <span class="n">searchable</span><span class="o">=</span><span class="kc">True</span>
+                                                            <span class="p">),</span>
+                                               <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;names5&#39;</span><span class="p">,</span>
+                                                            <span class="n">options</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                                                            <span class="n">multi</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                                            <span class="n">value</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                                                            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;#1E1E1E&#39;</span><span class="p">},</span>
+                                                            <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;please pick name&#39;</span><span class="p">,</span>
+                                                            <span class="n">searchable</span><span class="o">=</span><span class="kc">True</span>
+                                                            <span class="p">)</span>
+                                           <span class="p">],</span>
+                                           <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;#1E1E1E&#39;</span><span class="p">}),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Description&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;app5text&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;We have used playtype data and Jensen Shannon divergence to find the best fit players for each team. As a team, you would prefer to target players who are best suited to your current playstyle, or would add a new dimension to your offensive capabilities. The similar players are the ones that would best slot into the teams current distribution with the most synergy. The complement score gives you players that are proficient in the areas that the selected team is weakest in.&#39;</span><span class="p">)</span>
+                              <span class="p">]</span>
+                              <span class="p">),</span>  <span class="c1"># Define the left element</span>
+                     <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;eight columns div-for-charts bg-grey&#39;</span><span class="p">,</span>
+                              <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Best fit player targets&#39;</span><span class="p">),</span>
+                                  <span class="n">DataTable</span><span class="p">(</span>
+                                    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;gapminder4&quot;</span><span class="p">,</span>
+                                    <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">c</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">nameList</span><span class="p">[</span><span class="n">c</span><span class="p">]}</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span>
+                                              <span class="p">[</span><span class="s1">&#39;PLAYER_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;TEAM_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;total_poss&#39;</span><span class="p">,</span>
+                                              <span class="s1">&#39;Similarity Score&#39;</span><span class="p">,</span> <span class="s1">&#39;Complement Score&#39;</span><span class="p">]],</span>
+                                    <span class="n">page_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                    <span class="n">style_header</span><span class="o">=</span><span class="p">{</span>
+                                        <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
+                                        <span class="s1">&#39;fontWeight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+                                        <span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                                        <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span>
+                                    <span class="p">},</span>
+                                    <span class="n">style_cell</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;padding&#39;</span><span class="p">:</span> <span class="s1">&#39;5px&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;fontWeight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;60px&#39;</span>
+                                    <span class="p">},</span>
+                                    <span class="n">editable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                    <span class="n">filter_action</span><span class="o">=</span><span class="s2">&quot;native&quot;</span><span class="p">,</span>
+                                    <span class="n">sort_action</span><span class="o">=</span><span class="s2">&quot;native&quot;</span><span class="p">,</span>
+                                    <span class="n">sort_mode</span><span class="o">=</span><span class="s2">&quot;multi&quot;</span><span class="p">,</span>
+                                    <span class="n">column_selectable</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">,</span>
+                                    <span class="n">row_selectable</span><span class="o">=</span><span class="s2">&quot;multi&quot;</span><span class="p">,</span>
+                                    <span class="n">row_deletable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                    <span class="n">selected_columns</span><span class="o">=</span><span class="p">[],</span>
+                                    <span class="n">selected_rows</span><span class="o">=</span><span class="p">[],</span>
+                                    <span class="n">page_action</span><span class="o">=</span><span class="s2">&quot;native&quot;</span><span class="p">,</span>
+                                    <span class="n">page_current</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                    <span class="n">style_table</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;overflowX&#39;</span><span class="p">:</span> <span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;98%&#39;</span><span class="p">}</span>
+                                  <span class="p">)</span>
+                              <span class="p">])</span>
+                 <span class="p">])</span>
+    <span class="p">])</span>
+
+<span class="n">app6</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span><span class="n">nav</span><span class="p">]),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span>  <span class="c1"># Define the row element</span>
+                 <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                     <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;four columns div-user-controls&#39;</span><span class="p">,</span>
+                              <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Years options&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;div-for-dropdown&#39;</span><span class="p">,</span>
+                                           <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                               <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;years&#39;</span><span class="p">,</span>
+                                                            <span class="n">options</span><span class="o">=</span><span class="n">get_options</span><span class="p">([</span><span class="s1">&#39;2015&#39;</span><span class="p">,</span> <span class="s1">&#39;2016&#39;</span><span class="p">,</span> <span class="s1">&#39;2017&#39;</span><span class="p">,</span> <span class="s1">&#39;2018&#39;</span><span class="p">,</span> <span class="s1">&#39;2019&#39;</span><span class="p">]),</span>
+                                                            <span class="n">multi</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                                            <span class="n">value</span><span class="o">=</span><span class="s1">&#39;2015&#39;</span><span class="p">,</span>
+                                                            <span class="n">searchable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span><span class="s1">&#39;#1E1E1E&#39;</span><span class="p">},</span>
+                                                            <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;please pick year&#39;</span><span class="p">,</span>
+                                                            <span class="n">className</span><span class="o">=</span><span class="s1">&#39;stockselector&#39;</span><span class="p">),</span>
+                                               <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;names&#39;</span><span class="p">,</span>
+                                                            <span class="n">options</span><span class="o">=</span><span class="n">get_options</span><span class="p">(</span><span class="n">names</span><span class="p">),</span>
+                                                            <span class="n">multi</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                                            <span class="n">value</span><span class="o">=</span><span class="s1">&#39;James Harden&#39;</span><span class="p">,</span>
+                                                            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;#1E1E1E&#39;</span><span class="p">},</span>
+                                                            <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;please pick player&#39;</span><span class="p">,</span>
+                                                            <span class="n">className</span><span class="o">=</span><span class="s1">&#39;stockselector&#39;</span><span class="p">)],</span>
+                                           <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span><span class="s1">&#39;#1E1E1E&#39;</span><span class="p">}),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">()</span>
+                              <span class="p">]</span>
+                              <span class="p">),</span>  <span class="c1"># Define the left element</span>
+                     <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">className</span><span class="o">=</span><span class="s1">&#39;eight columns div-for-charts bg-grey&#39;</span><span class="p">,</span>
+                              <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Pie Chart&#39;</span><span class="p">),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="p">[</span><span class="n">html</span><span class="o">.</span><span class="n">Img</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;gapminder5&#39;</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+                                                     <span class="n">html</span><span class="o">.</span><span class="n">Img</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;playphoto&#39;</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">alt</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)]),</span>
+                                  <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;app6text&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;123&#39;</span><span class="p">)</span>
+                              <span class="p">])</span>  <span class="c1"># Define the right element</span>
+                 <span class="p">])</span>
+    <span class="p">])</span>
+
+
+
+<span class="nd">@app3</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;gapminder2&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span> <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;years&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">update_app</span><span class="p">(</span><span class="n">year</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">update_app3</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+
+
+<span class="nd">@app5</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;gapminder4&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">),</span> <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;years5&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span> <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;names5&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">update_app</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">update_app5</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+
+<span class="nd">@app5</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;names5&#39;</span><span class="p">,</span> <span class="s1">&#39;options&#39;</span><span class="p">),</span> <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;years5&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">update_options</span><span class="p">(</span><span class="n">year</span><span class="p">):</span>
+    <span class="n">path5</span> <span class="o">=</span> <span class="s1">&#39;data2/teams_csv/teams_&#39;</span> <span class="o">+</span> <span class="n">year</span> <span class="o">+</span> <span class="s1">&#39;_profile_table.csv&#39;</span>
+    <span class="n">df5</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path5</span><span class="p">)</span>
+    <span class="n">names5</span> <span class="o">=</span> <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;TEAM_NAME&#39;</span><span class="p">]</span>
+    <span class="n">name_new</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">names5</span><span class="p">:</span>
+        <span class="n">name_new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">get_options</span><span class="p">(</span><span class="n">name_new</span><span class="p">)</span>
+
+
+<span class="nd">@app6</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;gapminder5&#39;</span><span class="p">,</span> <span class="s1">&#39;src&#39;</span><span class="p">),</span> <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;years&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span> <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;names&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">update_app</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">update_app6</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span>
+
+
+<span class="nd">@app6</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;playphoto&#39;</span><span class="p">,</span> <span class="s1">&#39;src&#39;</span><span class="p">),</span> <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;names&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">update_app</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">update_photo6</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+
+<span class="nd">@app6</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;names&#39;</span><span class="p">,</span> <span class="s1">&#39;options&#39;</span><span class="p">),</span> <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;years&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">update_options</span><span class="p">(</span><span class="n">year</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;data/data_cleaned/pca_data/&quot;</span> <span class="o">+</span> <span class="n">year</span> <span class="o">+</span> <span class="s2">&quot;_pca_table.csv&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;PLAYER_NAME&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">get_options</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+
+
+<span class="nd">@app6</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;app6text&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span> <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;years&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span> <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;names&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">update_text</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;Here we can see the selected player&#39;s playstyle for the given year. We can see how over time these playstyles may change due to trends in the league. Some prominent examples would be brook Lopez&#39;s transformation from a traditional back to the basket center to a sport-up shooter.&quot;</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app_flask</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Conclusion">
+<h1>Conclusion<a class="headerlink" href="#Conclusion" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">• Player roles have broken a lot of pre-conceived notions in the last 5 years</div>
+<div class="line">• A tool that allows teams to clearly identify player role paradigms would be very useful for teams in terms of deciding strategy</div>
+<div class="line">• The most efficient shots are the hardest ones to create</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">NBA Synergy Playtype Analysis</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Group 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Motivation">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Methodology">Methodology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Flow-Chart">Flow Chart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Dataset">Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Dashboard-Introduction">Dashboard Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Page-1:-Best-Scorers-in-the-league">Page 1: Best Scorers in the league</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Page-2:-Efficieny-of-PlayTypes">Page 2: Efficieny of PlayTypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Page-3:-Behaviour-of-typical-players">Page 3: Behaviour of typical players</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Page-4:-Top-5-players-per-cluster">Page 4: Top 5 players per cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Page-5:-Frequency-of-PlayTypes">Page 5: Frequency of PlayTypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Page-6:-Best-fit-player-targets">Page 6: Best fit player targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Navigation-Bar-Dash-Object">Navigation Bar Dash Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Dash-Implementation">Dash Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Conclusion">Conclusion</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to ECE 229 Group 2 project!</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, ECE229_Group2.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/Sphinx.ipynb.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
